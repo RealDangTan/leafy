@@ -1,0 +1,103 @@
+<style>
+    @import url('../styles/tokens.css');
+
+    .person-info-child {
+        width: 60px;
+        position: relative;
+        border-radius: 50%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+    .person-name {
+        align-self: stretch;
+        position: relative;
+        font-weight: 500;
+    }
+
+    .person-handle {
+        align-self: stretch;
+        position: relative;
+        font-size: 10px;
+        font-weight: 500;
+    }
+
+    .person-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .person-info {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .add-circle-outline {
+        width: 16px;
+        position: relative;
+        max-height: 100%;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    .follow-button-text {
+        position: relative;
+        font-weight: 500;
+    }
+
+    .follow-button {
+        border-radius: 999px;
+        background-color: #87a706;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        gap: 4px;
+        font-size: 10px;
+        color: #fff;
+    }
+
+    .profile-card {
+        width: 100%;
+        position: relative;
+        border-radius: 16px;
+        background-color: rgba(135, 167, 6, 0.1);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 18px;
+        box-sizing: border-box;
+        gap: 0px;
+        min-width: 332px;
+        text-align: left;
+        font-size: 16px;
+        color: #87a706;
+        font-family: 'Roboto Serif';
+    }
+</style>
+
+<div class="profile-card">
+    <div class="person-info">
+        <img class="person-info-child" alt="" src="../assets/images/imgProfile.png">
+
+        <div class="person-details">
+            <div class="person-name">Lê Đăng Tấn</div>
+            <div class="person-handle">@realdangtan</div>
+        </div>
+    </div>
+    <div class="follow-button">
+        <img class="add-circle-outline" alt="" src="../assets/icons/icAdd.svg">
+
+        <div class="follow-button-text">Theo dõi</div>
+    </div>
+</div>

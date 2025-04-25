@@ -1,0 +1,8 @@
+@import url('tokens.css');
+
+object {
+    width: 100%;
+    height: 60px; /* Adjust to match footer height */
+    border: none;
+    overflow: hidden;
+  }

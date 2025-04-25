@@ -1,0 +1,323 @@
+<html lang="vn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Leafy</title>
+    <link rel="icon" type="favicon/icon" href="assets/icons/icBrandLogo1.svg">
+    <style>
+        @import url("styles/tokens.css");
+
+        body {
+            display: flex;
+        }
+
+        a {
+            color: var(--color-brand-primary);
+        }
+
+        a:link {
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--color-hover);
+        }
+
+        a:active {
+            color: var(--color-clicked);
+        }
+
+        .welcome-text {
+            margin-left: var(--spacing-6);
+            font-size: 64px;
+            font-weight: 400;
+            line-height: 100%;
+            letter-spacing: 0px;
+            text-align: left;
+            display: flex;
+            align-self: flex-start;
+        }
+
+        #tree {
+            width: auto;
+            left: 120px;
+            height: 100%;
+            position: absolute;
+        }
+
+        .left {
+            width: 50vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            color: var(--color-brand-primary);
+        }
+
+
+        .logo {
+            width: 183.5;
+            height: 60;
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+
+        #welcome {
+            font-weight: 500;
+            font-size: 40px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            margin: 0;
+        }
+
+        #p1 {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            text-align: center;
+            margin: 0;
+        }
+
+        .form label {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+        }
+
+        .form input {
+            width: 450;
+            background-color: var(--color-background-primary);
+            color: inherit;
+            border: none;
+            outline: none;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            font-family: inherit;
+            position: relative;
+        }
+
+        .form input::placeholder {
+            color: var(--color-brand-opacity50);
+        }
+
+        .form input:focus::placeholder {
+            color: transparent;
+        }
+
+        .form div {
+            border-style: solid;
+            border-color: var(--color-brand-primary);
+            width: 482px;
+            height: 60px;
+            border-radius: 16px;
+            border-width: 1px;
+            padding-top: 12px;
+            padding-right: 16px;
+            padding-bottom: 12px;
+            padding-left: 16px;
+            display: flex;
+            justify-content: space-around;
+            box-sizing: border-box;
+        }
+
+        button {
+            font-family: inherit;
+            background-color: var(--color-brand-primary);
+            color: var(--color-true-white);
+            border: none;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            width: 482px;
+            height: 60px;
+            border-radius: 16px;
+            box-sizing: border-box;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+            color: var(--color-branch-contrast);
+        }
+
+        .form img {
+            width: 32px;
+            margin-right: 8px;
+        }
+
+        .right {
+            width: 50vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            gap: 32px;
+            color: var(--color-brand-primary);
+        }
+
+        #error-message-1,
+        #error-message-2 {
+            display: none;
+        }
+
+        @media screen and (max-width: 1079px) {
+            @media screen and (max-width: 1079px) {
+                body {
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 20px;
+                }
+
+                .left {
+                    display: none;
+                }
+
+                .right {
+                    width: 100%;
+                    max-width: 500px;
+                    height: auto;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 20px 10px;
+                }
+
+                .logo {
+                    margin-top: 32px;
+                    justify-content: center;
+                }
+
+                #welcome {
+                    font-size: 24px;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                #p1 {
+                    font-size: 14px;
+                    text-align: center;
+                    width: 100%;
+                }
+
+                .form {
+                    width: 100%;
+                    align-items: center;
+                }
+
+                .form div {
+                    width: 100%;
+                    max-width: 482px;
+                }
+
+                .form input {
+                    width: 100%;
+                }
+
+                button {
+                    width: 100%;
+                    max-width: 482px;
+                    font-size: 16px;
+                    padding: 8px 24px;
+                }
+
+                a,
+                p {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                a[href="2-forgot-password.html"] p {
+                    justify-content: center !important;
+                }
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <img src="assets/images/tree-2.png" alt="Tree" id="tree">
+    </div>
+    <div class="right">
+        <div class="logo">
+            <img src="assets/images/logo-type2.png" alt="logoLeafy">
+        </div>
+        <h2 id="welcome">Welcome back!</h2>
+        <p id="p1">Bạn chưa có tài khoản? <a href="signup">Tạo tại đây</a></p>
+        <form class="form">
+            <div>
+                <img src="assets/icons/icAccount.svg">
+                <input type="text" id="username" placeholder="Nhập username/email của bạn.." required>
+            </div>
+
+            <div>
+                <img src="assets/icons/icPass.svg">
+                <input type="password" id="password" placeholder="Nhập password của bạn..." required>
+            </div>
+
+            <a href="2-forgot-password.html">
+                <p style="display: flex;justify-content: flex-end;">Quên mật khẩu?</p>
+            </a>
+
+
+            <button type="submit">đăng nhập</button>
+            <p id="error-message-1" style="color: red; text-align: center;">Sai mật khẩu. Vui lòng kiểm tra
+                lại.</p>
+            <p id="error-message-2" style="color: red; text-align: center;">Vui lòng nhập username và password</p>
+
+
+        </form>
+    </div>
+    <script type="module">
+        import {server} from './scripts/config.js'
+
+        const submitButton = document.querySelector("button[type='submit']");
+
+        submitButton.addEventListener("click", async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username === "" && password === "") {
+                document.getElementById("error-message-2").style.display = "block";
+                return;
+            } else {
+                document.getElementById("error-message-2").style.display = "none";
+            }
+
+            let response = await fetch(`${server}/user/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
+            });
+
+            response = await response.json();
+
+            if (response.success) {
+                window.location.href = `${server}/`;
+            } else {
+                document.getElementById("error-message-2").style.display = "none";
+                document.getElementById("error-message-1").style.display = "block";
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

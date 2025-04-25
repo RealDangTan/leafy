@@ -1,0 +1,167 @@
+<link rel="stylesheet" href="component-styles.css">
+<style>
+    @import url('../styles/tokens.css');
+
+    .icon {
+        width: 32px;
+        position: relative;
+        max-height: 100%;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    #search {
+        position: relative;
+        font-weight: 500;
+    }
+
+    .icon-parent {
+        align-self: stretch;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .search-bar-tag-child {
+        align-self: stretch;
+        position: relative;
+        border-top: 1px solid rgba(135, 167, 6, 0.5);
+        box-sizing: border-box;
+        height: 1px;
+    }
+
+    .search-bar-tag {
+        width: 100%;
+        position: relative;
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+        border-radius: 8px;
+        background-color: #f8f8e7;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 16px;
+        box-sizing: border-box;
+        gap: 16px;
+        text-align: left;
+        font-size: 16px;
+        color: #9db052;
+        font-family: 'Roboto Serif';
+        max-width: 500px;
+    }
+
+    input {
+        flex: 1;
+        background-color: var(--color-background-primary);
+        color: var(--color-brand-primary);
+        border: none;
+        outline: none;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        font-family: inherit;
+        position: relative;
+    }
+
+    input::placeholder {
+        color: var(--color-brand-opacity50);
+    }
+
+    .tag-text {
+        position: relative;
+        line-height: 24px;
+        font-weight: 500;
+    }
+
+    .tag.active {
+        background-color: var(--color-brand-primary);
+        color: #fff;
+    }
+
+    .tag {
+        border-radius: 8px;
+        border: 2px solid var(--color-brand-primary);
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 8px;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+    }
+
+    .tag-parent {
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        gap: 8px;
+        text-align: left;
+        font-size: 12px;
+        color: var(--color-brand-primary);
+        font-family: 'Roboto Serif';
+    }
+</style>
+
+
+
+<div class="search-bar-tag">
+    <div class="icon-parent">
+        <img class="icon" alt="" src="../assets/icons/icFind.svg">
+        <input id="search" placeholder="Search" type="text"></input>
+    </div>
+    <div class="search-bar-tag-child"></div>
+
+
+    <div class="tag-parent" id="tag-container"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tags = [
+            "Thể thao",
+            "Di sản văn hóa",
+            "Khoa học",
+            "Công nghệ",
+            "Giáo dục",
+            "Môi trường",
+            "Y tế",
+            "Nghệ thuật",
+            "Âm nhạc",
+            "Lịch sử",
+            "Du lịch",
+            "Ẩm thực",
+            "Thời trang",
+            "Kinh tế",
+            "Chính trị",
+            "Xã hội",
+            "Văn học",
+            "Điện ảnh",
+            "Thể hình",
+            "Sức khỏe",
+            // Add more tags as needed
+        ];
+
+        const tagContainer = document.getElementById("tag-container");
+
+        // Generate tags dynamically
+        tags.forEach((tagText) => {
+            const tag = document.createElement("div");
+            tag.className = "tag";
+            tag.innerHTML = `<div class="tag-text">${tagText}</div>`;
+            tag.addEventListener("click", () => {
+                tag.classList.toggle("active");
+            });
+            tagContainer.appendChild(tag);
+            // code backend từ đây nhé quân
+        });
+    });
+</script>

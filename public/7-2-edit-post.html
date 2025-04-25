@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chỉnh sửa bài nghiên cứu</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="components/component-styles.css">
+    <link rel="stylesheet" href="styles/7-2-edit-post.css">
+
+    <style>
+        @import url('../styles/tokens.css');
+
+        .icon {
+            width: 32px;
+            position: relative;
+            max-height: 100%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        #search {
+            position: relative;
+            font-weight: 500;
+            border: none;
+        }
+
+        .icon-parent {
+            align-self: stretch;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+
+        .search-bar-tag-child {
+            align-self: stretch;
+            position: relative;
+            border-top: 1px solid rgba(135, 167, 6, 0.5);
+            box-sizing: border-box;
+            height: 1px;
+        }
+
+        .search-bar-tag {
+            width: 100%;
+            position: absolute;
+            top: 850px;
+            box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+            border-radius: 8px;
+            background-color: #f8f8e7;
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 16px;
+            box-sizing: border-box;
+            gap: 16px;
+            text-align: left;
+            font-size: 16px;
+            color: #9db052;
+            font-family: 'Roboto Serif';
+            max-width: 500px;
+            transform: translateY(-70px);
+            transition: all 0.2s ease-in-out;
+        }
+        .search-bar-tag.active{
+            display: flex;
+        }
+
+        input {
+            flex: 1;
+            background-color: var(--color-background-primary);
+            color: var(--color-brand-primary);
+            border: none;
+            outline: none;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            font-family: inherit;
+            position: relative;
+        }
+
+        input::placeholder {
+            color: var(--color-brand-opacity50);
+        }
+
+        .tag-text {
+            position: relative;
+            line-height: 24px;
+            font-weight: 500;
+        }
+
+        .tag.active {
+            background-color: var(--color-brand-primary);
+            color: #fff;
+        }
+
+
+        .tag-parent {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 8px;
+            text-align: left;
+            font-size: 12px;
+            color: var(--color-brand-primary);
+            font-family: 'Roboto Serif';
+        }
+
+        #edit-post-error-message {
+            color: red;
+            font-size: var(--spacing-2);
+            line-height: 100%;
+            letter-spacing: 0%;
+            margin-top: 8px;
+            align-self: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="preloader"></div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 200);
+        });
+    </script>
+    <nav id = navigation></nav>
+    <div class=edit-research>
+        <span style="font-size: var(--spacing-4); line-height: 100%; letter-spacing: 0%;">Thêm/Cập nhật bài nghiên
+            cứu</span>
+        <hr style="background-color: var(--color-brand-opacity50); width: 100%; height: 2px;">
+
+        <div class='edit-field'>
+            <div class='label'>
+                <span style="font-size: var(--spacing-2); line-height: 100%; letter-spacing: 0%;">Thông tin cơ
+                    bản</span>
+                <p style="color: var(--color-brand-primary)">Đây là nơi bạn điền các thông tin quan trọng giúp người đọc
+                    hiểu rõ nghiên cứu của bạn. Hãy chắc chắn rằng tên và nội dung tóm tắt được trình bày đầy đủ và chính xác.</p>
+            </div>
+            <div class='edit'>
+                <div class='input-field'>
+                    <span>Tên bài nghiên cứu *</span>
+                    <input type="text" id='research-name'>
+                </div>
+                <div class='input-field'>
+                    <span>Tóm tắt nội dung *</span>
+                    <input type="text" id='research-summary'>
+                </div>
+                <div class='input-field'>
+                    <span>Phân loại *</span>
+                    <div class="tag-parent" id="tag-search-panel" style = "border: 1px solid var(--color-brand-opacity50); border-radius: var(--spacing-2);">
+                        <div class=" nav-search-bar" style = "background-color: var(--color-background-primary); flex-direction: column; padding: var(--spacing-1) var(--spacing-3);">
+                            <div style = "display: flex; flex-direction: row; align-items: center; gap: 8px; width: 100%;border: none;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_294_217)">
+                                        <path
+                                            d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z"
+                                            fill="var(--color-brand-primary)" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_294_217">
+                                            <rect width="24" height="24" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                                <input type="text" placeholder="tìm tag..." class="search-input" id = 'tag-search-input' style = "flex-grow: 1;border: none;">
+                            </div><hr style="border: #8aa12e7b solid 1px; width: 100%; ">
+                            <div id = 'tag_container' style = "display: flex; flex-direction: row; flex-wrap: wrap; gap: 4px;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class='input-field'>
+                    <span>Ảnh bìa</span>
+                    <div class='file_upload' id="cover-image-dropzone">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_204_1667)">
+                                <path
+                                    d="M40.0002 53.3333C39.0557 53.3333 38.2646 53.0133 37.6268 52.3733C36.9868 51.7356 36.6668 50.9444 36.6668 50V26.1667L30.4168 32.4167C29.7502 33.0833 28.9724 33.4167 28.0835 33.4167C27.1946 33.4167 26.3891 33.0556 25.6668 32.3333C25.0002 31.6667 24.6813 30.8744 24.7102 29.9567C24.7368 29.0411 25.0557 28.2778 25.6668 27.6667L37.6668 15.6667C38.0002 15.3333 38.3613 15.0967 38.7502 14.9567C39.1391 14.8189 39.5557 14.75 40.0002 14.75C40.4446 14.75 40.8613 14.8189 41.2502 14.9567C41.6391 15.0967 42.0002 15.3333 42.3335 15.6667L54.3335 27.6667C55.0002 28.3333 55.319 29.1244 55.2902 30.04C55.2635 30.9578 54.9446 31.7222 54.3335 32.3333C53.6668 33 52.8757 33.3467 51.9602 33.3733C51.0424 33.4022 50.2502 33.0833 49.5835 32.4167L43.3335 26.1667V50C43.3335 50.9444 43.0146 51.7356 42.3768 52.3733C41.7368 53.0133 40.9446 53.3333 40.0002 53.3333ZM20.0002 66.6667C18.1668 66.6667 16.5979 66.0145 15.2935 64.71C13.9868 63.4033 13.3335 61.8333 13.3335 60V53.3333C13.3335 52.3889 13.6524 51.5967 14.2902 50.9567C14.9302 50.3189 15.7224 50 16.6668 50C17.6113 50 18.4035 50.3189 19.0435 50.9567C19.6813 51.5967 20.0002 52.3889 20.0002 53.3333V60H60.0002V53.3333C60.0002 52.3889 60.3202 51.5967 60.9602 50.9567C61.5979 50.3189 62.389 50 63.3335 50C64.2779 50 65.069 50.3189 65.7068 50.9567C66.3468 51.5967 66.6668 52.3889 66.6668 53.3333V60C66.6668 61.8333 66.0146 63.4033 64.7102 64.71C63.4035 66.0145 61.8335 66.6667 60.0002 66.6667H20.0002Z"
+                                    fill="#87A706" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_204_1667">
+                                    <rect width="80" height="80" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <div style="display: flex; gap: 3px">
+                            <span>Kéo file vào đây để upload hoặc</span>
+                            <span id='get-cover-file-btn'
+                                style="color: var(--color-brand-primary); text-decoration: underline; cursor: pointer">ấn
+                                vào đây</span>
+                            <span>để chọn từ thiết bị</span>
+                        </div>
+                        <input type="file" , id="cover-image-input" , style="display: none;" accept="image/*">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr style="background-color: var(--color-brand-opacity50); width: 100%; height: 2px;">
+        <div class='edit-field'>
+            <div class='label'>
+                <span style="font-size: var(--spacing-2); line-height: 100%; letter-spacing: 0%;">Bài nghiên cứu</span>
+                <p style="color: var(--color-brand-primary)">Vui lòng tải lên toàn bộ nội dung bài nghiên cứu để hệ
+                    thống lưu trữ và hiển thị chính xác. Nội dung chính vui lòng viết vào 1 file markdown (.md).
+                    Bạn có thể kéo thả hoặc chọn nhiều tệp từ máy tính để tải lên.
+                </p>
+                <p style="color: var(--color-brand-primary)">Hãy đảm bảo các đường dẫn tới hình ảnh trong file markdown (.md) của bạn có dạng assets/image.* và bạn phải tải các hình ảnh lên cùng với file markdown. Hoặc sử dụng đường liên kết bên ngoài để có hiệu quả tốt nhất! </p>
+            </div>
+            <div class="edit">
+                <div class='input-field'>
+                    <span>File nghiên cứu *</span>
+                    <div id='research-upload' class='file_upload'>
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_204_1667)">
+                                <path
+                                    d="M40.0002 53.3333C39.0557 53.3333 38.2646 53.0133 37.6268 52.3733C36.9868 51.7356 36.6668 50.9444 36.6668 50V26.1667L30.4168 32.4167C29.7502 33.0833 28.9724 33.4167 28.0835 33.4167C27.1946 33.4167 26.3891 33.0556 25.6668 32.3333C25.0002 31.6667 24.6813 30.8744 24.7102 29.9567C24.7368 29.0411 25.0557 28.2778 25.6668 27.6667L37.6668 15.6667C38.0002 15.3333 38.3613 15.0967 38.7502 14.9567C39.1391 14.8189 39.5557 14.75 40.0002 14.75C40.4446 14.75 40.8613 14.8189 41.2502 14.9567C41.6391 15.0967 42.0002 15.3333 42.3335 15.6667L54.3335 27.6667C55.0002 28.3333 55.319 29.1244 55.2902 30.04C55.2635 30.9578 54.9446 31.7222 54.3335 32.3333C53.6668 33 52.8757 33.3467 51.9602 33.3733C51.0424 33.4022 50.2502 33.0833 49.5835 32.4167L43.3335 26.1667V50C43.3335 50.9444 43.0146 51.7356 42.3768 52.3733C41.7368 53.0133 40.9446 53.3333 40.0002 53.3333ZM20.0002 66.6667C18.1668 66.6667 16.5979 66.0145 15.2935 64.71C13.9868 63.4033 13.3335 61.8333 13.3335 60V53.3333C13.3335 52.3889 13.6524 51.5967 14.2902 50.9567C14.9302 50.3189 15.7224 50 16.6668 50C17.6113 50 18.4035 50.3189 19.0435 50.9567C19.6813 51.5967 20.0002 52.3889 20.0002 53.3333V60H60.0002V53.3333C60.0002 52.3889 60.3202 51.5967 60.9602 50.9567C61.5979 50.3189 62.389 50 63.3335 50C64.2779 50 65.069 50.3189 65.7068 50.9567C66.3468 51.5967 66.6668 52.3889 66.6668 53.3333V60C66.6668 61.8333 66.0146 63.4033 64.7102 64.71C63.4035 66.0145 61.8335 66.6667 60.0002 66.6667H20.0002Z"
+                                    fill="#87A706" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_204_1667">
+                                    <rect width="80" height="80" fill="white" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                        <div style="display: flex; gap: 3px; flex-wrap: nowrap;" id="research-file-upload">
+                            <span>Kéo một/nhiều file vào đây để upload hoặc</span>
+                            <span id='get-research-file-btn'
+                                style="color: var(--color-brand-primary); text-decoration: underline; cursor: pointer">ấn
+                                vào đây</span>
+                            <span>để chọn từ thiết bị</span>
+                        </div>
+                        <input type="file" id="research-file-input" style="display: none;" multiple>
+                    </div>
+                </div>
+                <div id='file-container'></div>
+            </div>
+        </div>
+        <p id = edit-post-error-message></p>
+        <button id='upload-btn'>Thêm/Cập nhật bài nghiên cứu</button>
+    </div>
+    <footer id='footer'></footer>
+    <script type="module" src="./scripts/component.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = "./scripts/navigator.js";
+            document.body.appendChild(script);
+        });
+    </script>
+    <script type = "module">
+        import {still_tags_loader_no_link} from './scripts/tags_loader.js';
+        import {server} from './scripts/config.js';
+
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search;
+            if (queryString) {
+                const urlParams = new URLSearchParams(queryString);
+                urlParams.forEach((value, key) => {
+                    params[key] = value;
+                });
+            }
+            return params;
+        }
+
+        fetch(`${server}/user/get-user-info`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			credentials: 'include',
+		}).then((response) => response.json()).then(async (data) => {
+			if (!data.success && data.message === 'Unauthorized') {
+				window.location.href = '/login';
+				return;
+			}
+		})
+
+        const queryParams = getQueryParams();
+        if (queryParams.post_id) {
+            fetch(`${server}/api/v1/fetch-post-for-edit?post_id=${queryParams.post_id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    document.getElementById('research-name').value = data.data.title;
+                    document.getElementById('research-summary').value = data.data.subtitle;
+                    for (let tag of data.data.tags) {
+                        currentTagTexts.push(tag);
+                    }
+                } else {
+                    window.alert('Bạn không có quyền truy cập bài viết này!');
+                    window.location.href = '/';
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
+        let research_files = []
+
+        document.getElementById('get-cover-file-btn').addEventListener('click', function () {
+            document.getElementById('cover-image-input').click();
+        });
+
+        document.getElementById('cover-image-input').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            console.log(event.target.files);
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    if (document.getElementById('cover-image-img')) {
+                        document.getElementById('cover-image-img').remove();
+                    }
+                    const img_name = document.createElement('span');
+                    img_name.id = 'cover-image-img'
+                    img_name.innerText = file.name;
+                    document.querySelector('.file_upload').appendChild(img_name);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('get-research-file-btn').addEventListener('click', function () {
+            document.getElementById('research-file-input').click();
+        });
+
+        document.getElementById('research-file-input').addEventListener('change', function (event) {
+            const files = event.target.files;
+            const fileContainer = document.getElementById('file-container');
+            const research_upload = document.getElementById('research-upload');
+
+            const img_icon =
+                `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_204_929)"><path d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z" fill="#87A706"/></g><defs><clipPath id="clip0_204_929"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>`;
+            const md_icon =
+                `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_204_922)"><path d="M15.25 12.125L14.575 11.45C14.425 11.3 14.25 11.2292 14.05 11.2375C13.85 11.2458 13.675 11.325 13.525 11.475C13.375 11.625 13.3 11.8 13.3 12C13.3 12.2 13.375 12.375 13.525 12.525L15.3 14.3C15.5 14.5 15.7333 14.6 16 14.6C16.2667 14.6 16.5 14.5 16.7 14.3L18.475 12.525C18.625 12.375 18.7 12.2 18.7 12C18.7 11.8 18.625 11.625 18.475 11.475C18.325 11.325 18.1458 11.25 17.9375 11.25C17.7292 11.25 17.55 11.325 17.4 11.475L16.75 12.125V9.75C16.75 9.53333 16.6792 9.35417 16.5375 9.2125C16.3958 9.07083 16.2167 9 16 9C15.7833 9 15.6042 9.07083 15.4625 9.2125C15.3208 9.35417 15.25 9.53333 15.25 9.75V12.125ZM4 20C3.45 20 2.97917 19.8042 2.5875 19.4125C2.19583 19.0208 2 18.55 2 18V6C2 5.45 2.19583 4.97917 2.5875 4.5875C2.97917 4.19583 3.45 4 4 4H20C20.55 4 21.0208 4.19583 21.4125 4.5875C21.8042 4.97917 22 5.45 22 6V18C22 18.55 21.8042 19.0208 21.4125 19.4125C21.0208 19.8042 20.55 20 20 20H4ZM7 10.5H8V12.75C8 12.9667 8.07083 13.1458 8.2125 13.2875C8.35417 13.4292 8.53333 13.5 8.75 13.5C8.96667 13.5 9.14583 13.4292 9.2875 13.2875C9.42917 13.1458 9.5 12.9667 9.5 12.75V10.5H10.5V14.25C10.5 14.4667 10.5708 14.6458 10.7125 14.7875C10.8542 14.9292 11.0333 15 11.25 15C11.4667 15 11.6458 14.9292 11.7875 14.7875C11.9292 14.6458 12 14.4667 12 14.25V10C12 9.71667 11.9042 9.47917 11.7125 9.2875C11.5208 9.09583 11.2833 9 11 9H6.5C6.21667 9 5.97917 9.09583 5.7875 9.2875C5.59583 9.47917 5.5 9.71667 5.5 10V14.25C5.5 14.4667 5.57083 14.6458 5.7125 14.7875C5.85417 14.9292 6.03333 15 6.25 15C6.46667 15 6.64583 14.9292 6.7875 14.7875C6.92917 14.6458 7 14.4667 7 14.25V10.5Z" fill="#87A706"/></g><defs><clipPath id="clip0_204_922"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>`;
+            const pdf_icon =
+                `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_473_1228)"><path d="M20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM11.5 9.5C11.5 10.33 10.83 11 10 11H9V13H7.5V7H10C10.83 7 11.5 7.67 11.5 8.5V9.5ZM16.5 11.5C16.5 12.33 15.83 13 15 13H12.5V7H15C15.83 7 16.5 7.67 16.5 8.5V11.5ZM20.5 8.5H19V9.5H20.5V11H19V13H17.5V7H20.5V8.5ZM9 9.5H10V8.5H9V9.5ZM4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM14 11.5H15V8.5H14V11.5Z" fill="#87A706"/></g><defs><clipPath id="clip0_473_1228"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>`;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const filefield = document.createElement('div');
+                filefield.className = 'file-field';
+
+                let file_icon = document.createElement('div');
+                let div = document.createElement('div');
+                div.style = 'display: flex; flex-direction: row; gap: 10px; align-items: center;';
+                let file_name = document.createElement('span');
+                let file_cancel = document.createElement('div')
+
+                if (file.name.endsWith('.png') || file.name.endsWith('.jpg')) file_icon.innerHTML = img_icon;
+                else if (file.name.endsWith('.pdf')) file_icon.innerHTML = pdf_icon;
+                else if (file.name.endsWith('.md')) file_icon.innerHTML = md_icon;
+
+                file_name.innerText = file.name;
+                div.appendChild(file_icon);
+                div.appendChild(file_name);
+                filefield.appendChild(div);
+                filefield.appendChild(file_cancel);
+                fileContainer.appendChild(filefield);
+
+                file_cancel.innerHTML =
+                    `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z" fill="#87A706"/></svg>`
+                file_cancel.onclick = remove_file.bind(this, file.name);
+
+                research_files.push(file);
+            }
+            if (document.getElementById('file-count')) {
+                document.getElementById('file-count').innerText = `Đã tải ${research_files.length} file lên`;
+                return
+            }
+            let file_count = document.createElement('span');
+            file_count.id = 'file-count';
+            file_count.innerText = `Đã tải ${research_files.length} file lên`;
+            research_upload.appendChild(file_count);
+        });
+
+        function remove_file(name) {
+            const inx = research_files.findIndex(file => file.name === name);
+            if (inx !== -1) {
+                research_files.splice(inx, 1);
+                const fileContainer = document.getElementById('file-container');
+                const fileCount = document.getElementById('file-count');
+                fileContainer.removeChild(fileContainer.children[inx]);
+                if (research_files.length === 0) {
+                    fileCount.remove();
+                } else {
+                    fileCount.innerText = `Đã tải ${research_files.length} file lên`;
+                }
+            }
+        }
+
+        const currentTagTexts = [];
+        const searchPanelStillTagContainer = document.getElementById("tag_container");
+        function get_tag_template(tag) {
+            const tagElement = document.createElement("div");
+            tagElement.className = "tag";
+            tagElement.innerHTML = `<div class="tag-text">${tag.name}</div>`;
+            tagElement.style.cursor = "pointer";
+            tagElement.addEventListener("click", () => {
+                tagElement.classList.toggle("active");
+
+                // ???
+
+                check_tag();
+
+                // ???
+
+                if (tagElement.classList.contains("active")) {
+                    currentTagTexts.push(tag.name);
+                } else {
+                    const index = currentTagTexts.indexOf(tag.name);
+                    if (index > -1) {
+                        currentTagTexts.splice(index, 1);
+                    }
+                }
+            });
+            return tagElement;
+        }
+
+        async function load_tag() {
+            
+            const url = `${server}/api/v1/get-search-value?value=${document.getElementById("tag-search-input").value}&limit=100`;
+
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            let data = await response.json();
+
+            data = data.data;
+            if (data.tags.length == 0) {
+                searchPanelStillTagContainer.innerHTML = "<p>Không tìm thấy kết quả nào...<p>";
+            } else {
+                searchPanelStillTagContainer.innerHTML = "";
+                const activeTags = [];
+                const notActiveTags = [];
+                data.tags.forEach((tag) => {
+                    const tagElement = get_tag_template(tag);
+                    if (currentTagTexts.includes(tag.name)) {
+                        tagElement.classList.add("active");
+                        activeTags.push(tagElement);
+                    } else {
+                        notActiveTags.push(tagElement);
+                    }
+                });
+
+                activeTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
+                notActiveTags.forEach(tag => searchPanelStillTagContainer.appendChild(tag));
+            }
+        }
+        load_tag();
+
+        // ???
+
+        function check_tag() {
+            console.log(currentTagTexts.length);
+            if (currentTagTexts.length >= 50 ) {
+                const current_tag_list = searchPanelStillTagContainer.querySelectorAll(".tag");
+                const is_egg_exist = Array.from(current_tag_list).some(tag => tag.innerText === "???");
+                if (!is_egg_exist) {
+                    searchPanelStillTagContainer.appendChild(get_tag_template({ name: "???" }));
+                }
+            } else {
+                const index = currentTagTexts.indexOf("???");
+                if (index > -1) {
+                    currentTagTexts.splice(index, 1);
+                }
+                searchPanelStillTagContainer.querySelectorAll(".tag").forEach(tag => {
+                    if (tag.innerText === "???") {
+                        tag.remove();
+                    }
+                });
+            }
+        }
+        
+        // ???
+
+        let url = `${server}/user/upload-research`;
+        if (queryParams.post_id) {
+            url += `?post_id=${queryParams.post_id}`;
+        }
+
+        document.getElementById("tag-search-input").addEventListener("input", async () => {
+            await load_tag();
+        });
+
+        document.getElementById("upload-btn").addEventListener("click", async () => {
+            const research_name = document.getElementById('research-name').value;
+            const research_summary = document.getElementById('research-summary').value;
+            const cover_image = document.getElementById('cover-image-input').files[0];
+            if (!research_name || !research_summary || currentTagTexts.length === 0) {
+                document.getElementById('edit-post-error-message').innerText = "Vui lòng điền đầy đủ thông tin (*)!";
+                document.getElementById('edit-post-error-message').style.display = "block";
+                return;
+            }
+            let formData = new FormData();
+            formData.append("title", research_name);
+            formData.append("subtitle", research_summary);
+            formData.append("tags", JSON.stringify(currentTagTexts));
+            if (queryParams.post_id) {
+                formData.append("post_id", queryParams.post_id);
+            }
+            
+            if (cover_image) {
+                const oldExtension = cover_image.name.split('.').pop();
+                const renamedCoverImage = new File([cover_image], `thumbnail.${oldExtension}`, { type: cover_image.type });
+                formData.append("cover_image", renamedCoverImage);
+            } else {
+                
+            }
+
+            const hasMarkdownFile = research_files.some(file => file.name.endsWith('.md'));
+            if (!hasMarkdownFile) {
+                document.getElementById('edit-post-error-message').innerText = "Vui lòng tải lên ít nhất một file markdown (.md)!";
+                document.getElementById('edit-post-error-message').style.display = "block";
+                return;
+            }
+
+            research_files.forEach(file => {
+                if (file.name.endsWith('.md')) {
+                    const renamedFile = new File([file], "content.md", { type: file.type });
+                    formData.append("research_file", renamedFile);
+                } else {
+                    formData.append("research_file", file);
+                }
+            });
+
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}:`, value);
+            }
+
+            await fetch(url, {
+                method: "POST",
+                body: formData,
+                credentials: 'include'
+            }).then((response) => response.json()).then((data) => {
+                if (data.status === "success") {
+                    window.location.href = "./post?post_id=" + data.post_id;
+                } else {
+                    document.getElementById('edit-post-error-message').innerText = data.message;
+                    document.getElementById('edit-post-error-message').style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById('edit-post-error-message').style.display = "none";
+                    }, 3000);
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        });
+
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const style = document.createElement('style');
+            style.textContent = `
+                .file_upload.dragover {
+                    border: 2px dashed var(--color-brand-primary) !important;
+                    background-color: rgba(135, 167, 6, 0.1) !important;
+                }
+            `;
+            document.head.appendChild(style);
+    
+            const coverImageDropzone = document.getElementById('cover-image-dropzone');
+            const coverImageInput = document.getElementById('cover-image-input');
+    
+            const researchUpload = document.getElementById('research-upload');
+            const researchFileInput = document.getElementById('research-file-input');
+    
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                coverImageDropzone.addEventListener(eventName, preventDefaults, false);
+                researchUpload.addEventListener(eventName, preventDefaults, false);
+            });
+    
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+    
+            ['dragenter', 'dragover'].forEach(eventName => {
+                coverImageDropzone.addEventListener(eventName, highlight, false);
+                researchUpload.addEventListener(eventName, highlight, false);
+            });
+    
+            ['dragleave', 'drop'].forEach(eventName => {
+                coverImageDropzone.addEventListener(eventName, unhighlight, false);
+                researchUpload.addEventListener(eventName, unhighlight, false);
+            });
+    
+            function highlight(e) {
+                this.classList.add('dragover');
+            }
+    
+            function unhighlight(e) {
+                this.classList.remove('dragover');
+            }
+    
+            coverImageDropzone.addEventListener('drop', handleCoverImageDrop, false);
+            researchUpload.addEventListener('drop', handleResearchFilesDrop, false);
+    
+            function handleCoverImageDrop(e) {
+                const dt = e.dataTransfer;
+                const file = dt.files[0];
+                
+                if (file) {
+                    const isImage = file.type.startsWith('image/');
+                    
+                    if (isImage) {
+                        const dataTransfer = new DataTransfer();
+                        dataTransfer.items.add(file);
+                        coverImageInput.files = dataTransfer.files;
+                        
+                        const event = new Event('change');
+                        coverImageInput.dispatchEvent(event);
+                    } else {
+                        const errorMsg = document.getElementById('edit-post-error-message');
+                        errorMsg.innerText = "Vui lòng chỉ tải lên tệp hình ảnh.";
+                        errorMsg.style.display = "block";
+                        
+                        setTimeout(() => {
+                            errorMsg.style.display = "none";
+                        }, 3000);
+                    }
+                }
+            }
+            function handleResearchFilesDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length > 0) {
+                    const dataTransfer = new DataTransfer();
+                    for (let i = 0; i < files.length; i++) {
+                        dataTransfer.items.add(files[i]);
+                    }
+                    researchFileInput.files = dataTransfer.files;
+
+                    const event = new Event('change');
+                    researchFileInput.dispatchEvent(event);
+                }
+            }
+        });
+    </script>
+    
+</body>
+
+</html>

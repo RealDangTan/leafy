@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Kho Nghiên Cứu</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto Serif:wght@500&display=swap" />
+    <link rel="stylesheet" href="components/component-styles.css">
+    <link rel="stylesheet" href="styles/5-archive.css">
+    <style>
+        #tab-navigator span{
+            background-color: var(--color-background-primary);
+        }
+        #tab-navigator span.active {
+            background-color: var(--color-brand-opacity15);
+        }
+        .number-options .number-btn.active {
+            background-color: var(--color-brand-primary);
+            color: var(--color-true-white);
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader"></div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('preloader').style.display = 'none';
+        }, 4000);
+    </script>
+    <nav id = 'navigation'></nav>
+
+    <div class="typography-title">
+        <img class="hero-image" alt="" src="assets\images\imgKhoNghienCuuHero.png">
+        <div class = "title-container">
+            <div class ="title-main">Kho nghiên cứu</div>
+            <p class ="title-sub">Bạn đang tìm kiếm nguồn cảm hứng nghiên cứu nhưng không muốn bị chìm trong những trang tài liệu khô khan? Đừng lo! Kho nghiên cứu Leafy sẽ mang đến cho bạn một không gian xanh mát, nơi kiến thức nảy nở tự nhiên như những chiếc lá non. Hãy cùng khám phá những bài nghiên cứu chất lượng theo cách thú vị nhất!</p>    
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class = topic-nav>
+            <div id = tab-navigator>   
+                <span class = "active" id = 'newest-btn'>Mới nhất</span>
+                <span id = hotest-ntm>Hot nhất</span>
+                <span id = from-follower-btn>Từ người theo dõi</span>
+            </div>
+            <button class = 'nav-button'>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_294_227)">
+                        <g clip-path="url(#clip1_294_227)">
+                            <path
+                                d="M8.66683 4.66671H7.3335V7.33337H4.66683V8.66671H7.3335V11.3334H8.66683V8.66671H11.3335V7.33337H8.66683V4.66671ZM8.00016 1.33337C4.32016 1.33337 1.3335 4.32004 1.3335 8.00004C1.3335 11.68 4.32016 14.6667 8.00016 14.6667C11.6802 14.6667 14.6668 11.68 14.6668 8.00004C14.6668 4.32004 11.6802 1.33337 8.00016 1.33337ZM8.00016 13.3334C5.06016 13.3334 2.66683 10.94 2.66683 8.00004C2.66683 5.06004 5.06016 2.66671 8.00016 2.66671C10.9402 2.66671 13.3335 5.06004 13.3335 8.00004C13.3335 10.94 10.9402 13.3334 8.00016 13.3334Z"
+                                fill="white" />
+                        </g>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_294_227">
+                            <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                        <clipPath id="clip1_294_227">
+                            <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                    </defs>
+                </svg>
+                <span style = "color: var(--color-true-white);" onclick = "window.location.href = '/edit-post'">Thêm bài viết</span>
+            </button>
+        </div>
+
+        <div class="search-bar-tag">
+            <div class="icon-parent">
+                <img class="icon" alt="" src="assets/icons/icFind.svg">
+                <button class="filter" id="tag-filter">
+                        <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.3572 3.25875L19.3497 3.26719L13 10.0472V15.2494C13.0003 15.4968 12.9395 15.7405 12.8229 15.9587C12.7062 16.1769 12.5375 16.3628 12.3315 16.5L9.33154 18.5006C9.10546 18.6512 8.84274 18.7376 8.57141 18.7505C8.30008 18.7635 8.03032 18.7025 7.79095 18.5741C7.55157 18.4457 7.35155 18.2547 7.21225 18.0215C7.07294 17.7883 6.99957 17.5216 6.99998 17.25V10.0472L0.650288 3.26719L0.642788 3.25875C0.44755 3.04389 0.318859 2.77699 0.272325 2.49043C0.225791 2.20387 0.263415 1.90996 0.380632 1.64436C0.497849 1.37876 0.689622 1.15288 0.932686 0.994131C1.17575 0.835378 1.45966 0.750572 1.74997 0.75H18.25C18.5405 0.750028 18.8248 0.834441 19.0683 0.992982C19.3118 1.15152 19.504 1.37737 19.6216 1.64308C19.7391 1.90878 19.777 2.20292 19.7305 2.48973C19.6841 2.77655 19.5554 3.04371 19.36 3.25875H19.3572Z" fill="#87A706"/>
+                        </svg>
+                       <span >Lọc</span> 
+                </button>
+                <input id="archive-search" placeholder="Search" type="text"></input>
+            </div>
+            <div class="search-bar-tag-child"></div>
+
+            <div class="tag-parent" id="tag-container"></div>
+        </div>
+        <div class = 'research-vault-container'>
+
+            <div id = 'tab-newest' class = 'research-vault-content-card active'>
+                <div class="content-card-container"></div>
+                <div class="number-selector">
+                    <div class="number-options"></div>
+                </div>
+            </div>
+            <div id = 'tab-hotest' class = 'research-vault-content-card'>
+                <div class="content-card-container"></div>
+                <div class="number-selector">
+                    <div class="number-options"></div>
+                </div>
+            </div>
+            <div id = 'tab-from-follower' class = 'research-vault-content-card'>
+                <div class="content-card-container"></div>
+                <div class="number-selector">
+                    <div class="number-options"></div>
+                </div>
+            </div>
+            <div class = research-vault-sticky>
+                <div class = 'hot-exploration-tab'>
+                    <div style = "display: flex; align-items: center; gap: 8px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_127_559)">
+                            <path d="M12 12.9L9.87 14.99C9.31 15.55 9 16.28 9 17.06C9 18.68 10.35 20 12 20C13.65 20 15 18.68 15 17.06C15 16.28 14.69 15.54 14.13 14.99L12 12.9Z" fill="#87A706"/>
+                            <path d="M16 6L15.56 6.55C14.38 8.02 12 7.19 12 5.3V2C12 2 4 6 4 13C4 15.92 5.56 18.47 7.89 19.86C7.33 19.07 7 18.1 7 17.06C7 15.74 7.52 14.5 8.47 13.56L12 10.1L15.53 13.57C16.48 14.5 17 15.74 17 17.07C17 18.09 16.69 19.03 16.15 19.82C18.04 18.67 19.44 16.76 19.86 14.52C20.52 10.97 18.79 7.62 16 6Z" fill="#87A706"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_127_559">
+                            <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
+                        <span style = "font-size: 24px; font-weight: 500;">Khám phá chủ đề hot</span>
+                    </div>
+                    <div class = 'still-tags-container' id = "hot-exploration-tab" style = "justify-content: flex-start;"></div>
+                </div>
+                <div class = 'people-suggestion'>
+                    <div style = "display: flex; gap: 8px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_127_573)">
+                            <path d="M16 11C17.66 11 18.99 9.66 18.99 8C18.99 6.34 17.66 5 16 5C14.34 5 13 6.34 13 8C13 9.66 14.34 11 16 11ZM8 11C9.66 11 10.99 9.66 10.99 8C10.99 6.34 9.66 5 8 5C6.34 5 5 6.34 5 8C5 9.66 6.34 11 8 11ZM8 13C5.67 13 1 14.17 1 16.5V19H15V16.5C15 14.17 10.33 13 8 13ZM16 13C15.71 13 15.38 13.02 15.03 13.05C16.19 13.89 17 15.02 17 16.5V19H23V16.5C23 14.17 18.33 13 16 13Z" fill="#87A706"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_127_573">
+                            <rect width="24" height="24" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>    
+                        <span style = "font-size: 24px; font-weight: 500;">Bạn có thể quen</span>
+                    </div>
+                    <div id = 'profile-card-container' style = "display: flex; flex-direction: column; gap: 4px;"></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>    
+
+
+<footer id="footer"></footer>
+    <script type = "module">
+        import { server } from "./scripts/config.js";
+
+        const urlParams = new URLSearchParams(window.location.search);
+        let queryTags = urlParams.get('tag');
+
+        function switch_page(button) {
+            for (let e of document.querySelectorAll('.number-options .number-btn')) {
+                e.classList.remove('active');
+            }
+            button.classList.add('active');
+            render_content_card(current_content_cards);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const buttons = document.querySelectorAll('.number-options .number-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function () {
+                    switch_page(this);
+                });
+            });
+        });
+
+        const currentTagTexts = [];
+        if (queryTags) currentTagTexts.push(queryTags);
+        const searchPanelStillTagContainer = document.getElementById("tag-container");
+        function get_tag_template(tag) {
+            const tagElement = document.createElement("div");
+            tagElement.className = "tag";
+            tagElement.innerHTML = `<div class="tag-text">${tag.name}</div>`;
+            tagElement.style.cursor = "pointer";
+            tagElement.addEventListener("click", () => {
+                tagElement.classList.toggle("active");
+                if (tagElement.classList.contains("active")) {
+                    currentTagTexts.push(tag.name);
+                } else {
+                    const index = currentTagTexts.indexOf(tag.name);
+                    if (index > -1) {
+                        currentTagTexts.splice(index, 1);
+                    }
+                }
+            });
+            return tagElement;
+        }
+
+        function debounce(func, timeout = 300) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => { func.apply(this, args); }, timeout);
+            };
+        }
+
+        async function load_tag() {
+            const url = `${server}/api/v1/get-search-value?value=${document.getElementById("archive-search").value}&limit=20`;
+
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            let data = await response.json();
+
+            data = data.data;
+            if (data.tags.length == 0) {
+                searchPanelStillTagContainer.innerHTML = "<p>Không tìm thấy kết quả nào...<p>";
+            } else {
+                searchPanelStillTagContainer.innerHTML = "";
+                const fragment = document.createDocumentFragment();
+                const activeTags = [];
+                const notActiveTags = [];
+                data.tags.forEach((tag) => {
+                    const tagElement = get_tag_template(tag);
+                    if (currentTagTexts.includes(tag.name)) {
+                        tagElement.classList.add("active");
+                        activeTags.push(tagElement);
+                    } else {
+                        notActiveTags.push(tagElement);
+                    }
+                });
+
+                activeTags.forEach(tag => fragment.appendChild(tag));
+                notActiveTags.forEach(tag => fragment.appendChild(tag));
+                searchPanelStillTagContainer.appendChild(fragment);
+            }
+            return data;
+        }
+        
+        let first_load_tags = await load_tag();
+        const first_load_profile_tags = first_load_tags.users;
+        first_load_tags = first_load_tags.tags;
+        first_load_tags.splice(0, 10);
+        const tagContainer = document.getElementById("hot-exploration-tab");
+        
+        const tagFragment = document.createDocumentFragment();
+        first_load_tags.forEach(tag => {
+            let inp_tag = document.createElement("button");
+            inp_tag.className = "still-content-tag";
+            inp_tag.innerText = tag.name;
+            inp_tag.onclick = function () {
+                searchPanelStillTagContainer.querySelectorAll(".tag").forEach(tag => {
+                    if (tag.innerText === inp_tag.innerText) {
+                        tag.click();
+                    }
+                });
+            };
+            tagFragment.appendChild(inp_tag);
+        });
+        tagContainer.appendChild(tagFragment);
+
+        document.getElementById("archive-search").addEventListener("input", 
+            debounce(() => load_tag())
+        );
+
+        let current_content_cards = [];
+
+        async function get_response(post_ids = null) {
+            let tag_query;
+            if (currentTagTexts.length == 0) tag_query = null;
+            else tag_query = currentTagTexts;
+
+            let response = await fetch(`${server}/api/v1/get-content-card`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    tags: tag_query,
+                    post_id: post_ids,
+                    limit: 999,
+                    mode: "strict",
+                }),
+            });
+            response = await response.json();
+            return response;
+        }
+
+        const numCard = 3
+
+        function split_page_button(content_cards) {
+            const numberOptions = document.querySelector(".number-options");
+            numberOptions.innerHTML = "";
+            const numTab = Math.ceil(content_cards.length / numCard);    
+            if (numTab > 0) {
+                const fragment = document.createDocumentFragment();
+                for (let i = 0; i < numTab; i++) {
+                    let inp_num = document.createElement("button");
+                    inp_num.className = "number-btn";
+                    inp_num.innerText = i + 1;
+                    if (i == 0) inp_num.classList.add("active");
+                    inp_num.onclick = function () {
+                        switch_page(inp_num);
+                        window.scrollTo({ top: 400, behavior: 'smooth' });
+                    };
+                    fragment.appendChild(inp_num);
+                }
+                numberOptions.appendChild(fragment);
+            }
+        }
+
+        async function content_card_filter() {
+            let data = [...current_content_cards]; 
+            const active_tab = document.querySelector(".research-vault-content-card.active");
+            if (active_tab.id === "tab-newest") {
+                data = data.sort((a, b) => new Date(b.date_created) - new Date(a.date_created));
+            } else if (active_tab.id === "tab-hotest") {
+                data = data.sort((a, b) => b.views - a.views);
+            } else if (active_tab.id === "tab-from-follower") {
+                await fetch(`${server}/user/get-follower-posts`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    credentials: "include",
+                }).then(response => response.json()).then(async response => {
+                    if (!response.success) window.location.href = "/login";
+                    data = await get_response(response.post_ids);
+                    data = data.content_cards;
+                });
+            }
+            split_page_button(data);
+            return data;
+        }
+
+        async function render_content_card(content_cards) {
+            const contentCardContainer = document.querySelector(".research-vault-content-card.active .content-card-container");
+            const activeBtn = document.querySelector(".number-options .number-btn.active");
+            if (!activeBtn) return;
+            
+            const current_page = parseInt(activeBtn.innerText) - 1;
+            const startIndex = current_page * numCard;
+            const endIndex = Math.min((current_page + 1) * numCard, content_cards.length);
+            const displayCards = content_cards.slice(startIndex, endIndex);
+            
+            contentCardContainer.innerHTML = "";
+            const fragment = document.createDocumentFragment();
+            
+            for (let tag of displayCards) {
+                const div = document.createElement("div");
+                div.className = "content-card";
+                div.innerHTML = tag.template;
+
+                div.querySelector(".still-content-tag").removeAttribute("onclick");
+            
+                div.addEventListener('click', function(e) {
+                    const target = e.target;
+                    if (target.classList.contains('still-content-tag')) {
+                        searchPanelStillTagContainer.querySelectorAll(".tag").forEach(sptag => {
+                            if (target.innerText === sptag.innerText) {
+                                sptag.click();
+                            }
+                        });
+                    } else if (target.closest('.content-text')) {
+                        window.location.href = `/post?post_id=${tag._id}`;
+                    }
+                });
+                
+                const contentText = div.querySelector(".content-text");
+                if (contentText) {
+                    contentText.style.cursor = "pointer";
+                }
+                
+                fragment.appendChild(div);
+            }
+            contentCardContainer.appendChild(fragment);
+        }
+
+        function get_profile_card_template(data) {
+            return `<div class="person-info">
+                    <img class="person-info-child" alt="" src="${data.profile_picture_url || "assets/images/imgDefaultProfilePicture.png"}">
+            
+                    <div class="person-details">
+                        <div class="person-name" onclick = "window.location.href = '/profile?user_id=${data._id}'">${data.display_name}</div>
+                        <div class="person-handle">@${data.username}</div>
+                    </div>
+                </div>
+                <button class="follow-button" data-userid="${data._id}">
+                    <img class="add-circle-outline" alt="" src="assets/icons/icAdd.svg">
+                    <div class="follow-button-text">Theo dõi</div>
+                </button>`;
+        }
+
+        async function render_profile_card(profile_cards) {
+            const pendingrender = [];
+            const profilePromises = [];
+            
+            for (let card of profile_cards) {
+                profilePromises.push(
+                    fetch(`${server}/user/is-followed?user_id=${card._id}`, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        credentials: "include",
+                    })
+                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.is_followed) pendingrender.push(card);
+                    })
+                );
+                if (pendingrender.length >= 3) break;
+            }
+            
+            await Promise.all(profilePromises);
+            
+            const profileCardContainer = document.getElementById("profile-card-container");
+            profileCardContainer.innerHTML = "";
+            
+            const fragment = document.createDocumentFragment();
+            for (let card of pendingrender.slice(0, 3)) {
+                const div = document.createElement("div");
+                div.className = "profile-card";
+                div.innerHTML = get_profile_card_template(card);
+                fragment.appendChild(div);
+            }
+            profileCardContainer.appendChild(fragment);
+            
+            document.querySelectorAll('.follow-button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const userId = this.dataset.userid;
+                    if (userId) followUser(this, userId);
+                });
+            });
+        }
+
+        let response = await get_response();
+        current_content_cards = response.content_cards;
+        let filtered_content_cards = await content_card_filter();
+        await render_content_card(filtered_content_cards);
+        await render_profile_card(first_load_profile_tags);
+
+        document.getElementById("newest-btn").onclick = function () {
+            switch_tab(this, "tab-newest");
+        };
+        document.getElementById("hotest-ntm").onclick = function () {
+            switch_tab(this, "tab-hotest");
+        };
+        document.getElementById("from-follower-btn").onclick = function () {
+            switch_tab(this, "tab-from-follower");
+        };
+
+        async function switch_tab(elem1, elem2) {
+            for (let e of document.querySelectorAll('#tab-navigator span')) {
+                e.classList.remove('active');
+            }
+            for (let e of document.querySelectorAll('.tagline .tagline-item')) {
+                e.classList.remove('active');
+            }
+            for (let e of document.querySelectorAll('.research-vault-content-card')) {
+                e.classList.remove('active');
+            }
+            elem1.classList.add('active');
+            document.getElementById(elem2).classList.add('active');
+            
+            response = await get_response();
+            current_content_cards = response.content_cards;
+            filtered_content_cards = await content_card_filter();
+            render_content_card(filtered_content_cards);
+        }
+
+        document.getElementById("tag-filter").addEventListener("click", async function () {
+            response = await get_response();
+            current_content_cards = response.content_cards;
+            let filtered_content_cards = await content_card_filter();
+            await render_content_card(filtered_content_cards);            
+        });
+
+        async function followUser(elem, user_id) {
+            try {
+                const response = await fetch(`/user/follow?user_id=${user_id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include',
+                });
+                const data = await response.json();
+                if (data.success) {
+                    const followButton = elem.querySelector('.follow-button-text');
+                    if (followButton.innerText === 'Theo dõi') {
+                        followButton.innerText = 'Đã theo dõi';
+                        followButton.classList.add('followed');
+                    } else {
+                        followButton.innerText = 'Theo dõi';
+                        followButton.classList.remove('followed');
+                    }
+                } else {
+                    window.location.href = "/login";
+                }
+            } catch (error) {
+                console.error('Error following user:', error);
+            }
+        }
+    </script>
+    <script type="module" src="./scripts/component.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = "./scripts/navigator.js";
+            document.body.appendChild(script);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh mục | Leafy</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="components/component-styles.css">
+    <link rel="stylesheet" href="styles/6-category.css">
+</head>
+
+<body>
+    <div id="preloader"></div>
+    <nav id = 'navigation'></nav>
+
+    <div class="typography-title">
+        <img class="hero-image" alt="" src="assets\images\imgKhoNghienCuuHero2.png">
+        <div class=title-container>
+            <div class="title-main">Danh mục</div>
+            <p class="title-sub">Chào mừng bạn đến với thế giới đầy màu sắc của những danh mục thú vị
+                dành cho các nghiên cứu sinh! Tại đây, bạn không chỉ tìm thấy những chủ đề hấp dẫn mà
+                còn có cơ hội khám phá những điều mới mẻ mà có thể bạn chưa bao giờ nghĩ đến. Hãy cùng nhau lướt qua
+                những ý tưởng độc đáo và những câu chuyện thú vị, để mỗi ngày học tập trở thành một cuộc phiêu lưu đầy
+                niềm vui nhé!</p>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="t-cc-nhmt">Từ các nhóm/tổ đội nghiên cứu</div>
+        <div class="tag-combination" id = 'club-group'>
+        </div>
+        <div class="t-cc-nhmt">Từ các chủ đề nghiên cứu hấp dẫn</div>
+        <div class="tag-combination" id = 'hot-group'>
+        </div>
+        <div class="t-cc-nhmt">Từ những phân mục hấp dẫn</div>
+        <div class="tag-combination" id = 'award-group'>
+            <!-- <div class="tag">Đạt giải</div> -->
+        </div>
+    </div>
+    <footer id = 'footer'></footer>
+    <script type="module" src="./scripts/component.js"></script>
+    <script type = module>
+
+        import { server } from "./scripts/config.js";
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = "./scripts/navigator.js";
+            document.body.appendChild(script);
+        });
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 200);
+        });
+
+        async function load_tags() {
+            const response = await fetch(`${server}/api/v1/get-search-value?limit=100`);
+            const data = await response.json();
+            if (data.success) {
+                const tags = data.data.tags;
+                const clubGroup = document.getElementById('club-group');
+                const hotGroup = document.getElementById('hot-group');
+                const awardGroup = document.getElementById('award-group');
+
+                function getTagTemplate(tag) {
+                    const div = document.createElement('div');
+                    div.className = 'tag';
+                    div.innerText = tag.name;
+                    div.onclick = function() {
+                        window.location.href = `./archive?tag=${tag.name}`;
+                    };
+                    return div;
+                }
+
+                for (let tag of tags) {
+                    const div = getTagTemplate(tag);
+                    if (tag.group === 'Club') {
+                        clubGroup.appendChild(div);
+                    } else if (tag.group === 'Hot') {
+                        hotGroup.appendChild(div);
+                    } else if (tag.group === 'Award') {
+                        awardGroup.appendChild(div);
+                    }
+                } 
+            }
+        }
+        load_tags();
+    </script>
+</body>
+
+</html>

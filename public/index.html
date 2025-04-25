@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="components/component-styles.css" />
+
+    <title>Leafy</title>
+
+    <style>
+        @import url('styles/tokens.css');
+
+        .leaf-poster-7-icon {
+            position: absolute;
+            top: 0px;
+            left: 681px;
+            width: 158.7px;
+            height: 158.7px;
+            object-fit: contain;
+        }
+
+        .ging-nh {
+            color: #204f0a;
+        }
+
+        .nghin-cu-ging-container {
+            position: absolute;
+            top: 251px;
+            left: 0px;
+            line-height: 117.03%;
+            display: inline-block;
+            width: 789px;
+        }
+
+        .chm-k-s {
+            position: absolute;
+            top: 453px;
+            left: 0px;
+            font-size: 24px;
+            color: #204f0a;
+            display: inline-block;
+            width: 543px;
+        }
+
+        .leafy {
+            position: absolute;
+            top: 2px;
+            left: 69px;
+        }
+
+        .leaf-icon {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 60px;
+            height: 60px;
+            overflow: hidden;
+        }
+
+        body {
+            width: 100%;
+            position: relative;
+            background-color: #f8f8e7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 80px 100px 604px;
+            box-sizing: border-box;
+            gap: 40px;
+            text-align: center;
+            padding: auto;
+        }
+
+        .hero-image {
+            width: 100%;
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            max-height: 100%;
+            object-fit: cover;
+        }
+
+
+
+        .img-kham-pha {
+            width: 198px;
+            position: absolute;
+            margin: 0 !important;
+            right: 32px;
+            bottom: 0px;
+            height: 236px;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .kham-pha-text {
+            align-self: stretch;
+            position: relative;
+            font-weight: 500;
+            z-index: 1;
+        }
+
+        .kham-pha-description {
+            position: relative;
+            font-size: 16px;
+            font-weight: 500;
+            color: #87a706;
+            display: inline-block;
+            max-width: 290px;
+            z-index: 2;
+        }
+
+        .kham-pha-tri-thuc {
+            align-self: stretch;
+            border-radius: 16px;
+            background-color: rgba(135, 167, 6, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 32px 36px;
+            position: relative;
+            gap: 16px;
+        }
+
+        .kham-pha-tri-thuc:hover {
+            background-color: rgba(135, 167, 6, 0.2);
+        }
+
+        .hanh-trinh-title {
+            align-self: stretch;
+            position: relative;
+            font-weight: 500;
+            z-index: 0;
+        }
+
+        .hanh-trinh-text {
+            width: 292px;
+            position: relative;
+            font-size: 16px;
+            font-weight: 500;
+            color: #87a706;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .img-hanh-trinh {
+            width: 277px;
+            position: absolute;
+            margin: 0 !important;
+            right: 0px;
+            bottom: 14px;
+            height: 189px;
+            object-fit: contain;
+            z-index: 2;
+        }
+
+        .hanh-trinh {
+            align-self: stretch;
+            border-radius: 16px;
+            background-color: rgba(135, 167, 6, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 32px 36px;
+            position: relative;
+            gap: 16px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hanh-trinh:hover {
+            background-color: rgba(135, 167, 6, 0.2);
+        }
+
+        .why-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 40px;
+            min-width: 582px;
+        }
+
+        .hieu-qua {
+            position: relative;
+            z-index: 0;
+        }
+
+        .hieu-qua-text {
+            width: 349px;
+            position: relative;
+            font-size: 16px;
+            font-weight: 500;
+            color: #87a706;
+            display: inline-block;
+            z-index: 1;
+        }
+
+
+        .img-hieu-qua {
+            width: 421px;
+            position: absolute;
+            margin: 0 !important;
+            top: 0px;
+            left: 0px;
+            height: 409px;
+            object-fit: contain;
+            z-index: 2;
+        }
+
+        .hieu-qua {
+            align-self: stretch;
+            border-radius: 16px;
+            background-color: rgba(135, 167, 6, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding: 205px 36px 32px;
+            position: relative;
+            gap: 4px;
+            font-size: 96px;
+        }
+
+        .why-parent {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            min-width: 1043px;
+            max-width: 1043px;
+            text-align: left;
+            font-size: 36px;
+            color: #204f0a;
+            font-family: 'Roboto Serif';
+        }
+
+        .ng-k-nhn {
+            align-self: stretch;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .email-icon {
+            width: 32px;
+            position: relative;
+            max-height: 100%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .nhp-email-ca {
+            position: relative;
+        }
+
+        .email-parent {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 16px;
+            background-color: #f8f8e7;
+            border: 1px solid rgba(135, 167, 6, 0.5);
+            box-sizing: border-box;
+            height: 60px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0px 16px;
+            gap: 8px;
+            text-align: left;
+            font-size: 16px;
+            color: rgba(135, 167, 6, 0.5);
+            overflow: hidden;
+        }
+
+        .receive-noti-text {
+            position: relative;
+            font-weight: 600;
+        }
+
+        .receive-noti {
+            width: 188px;
+            border-radius: 999px;
+            background-color: #87a706;
+            height: 48px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 24px;
+            box-sizing: border-box;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .receive-information {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 30px;
+            max-width: 1240px;
+            text-align: center;
+            font-size: 40px;
+            color: #204f0a;
+            font-family: 'Roboto Serif';
+        }
+
+        .group-item {
+            position: absolute;
+            top: 77.51px;
+            left: 0px;
+            border-radius: 16px;
+            background-color: #87a706;
+            width: 248.9px;
+            height: 377.1px;
+        }
+
+        .teacher-img {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            border-radius: 16px;
+            width: 248.9px;
+            height: 455px;
+            object-fit: cover;
+        }
+
+        .teacher-name {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            text-align: center;
+            width: 100%;
+            color: var(--color-background-primary)
+        }
+
+        .name-wrapper {
+            width: 175px;
+            position: relative;
+            height: 19px;
+        }
+
+        .name-container {
+            position: absolute;
+            top: 405.98px;
+            left: 19.14px;
+            border-radius: 6px;
+            background-color: rgba(135, 167, 6, 0.25);
+            border: 1px solid #87a706;
+            box-sizing: border-box;
+            width: 210.3px;
+            height: 32.7px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+
+        .rectangle-parent {
+            width: 248.9px;
+            position: relative;
+            height: 455px;
+        }
+
+        .group-item {
+            position: absolute;
+            top: 77.93px;
+            left: 0px;
+            border-radius: 16px;
+            background-color: #87a706;
+            width: 248.9px;
+            height: 377.1px;
+        }
+
+        .group-container {
+            position: absolute;
+            top: 405.98px;
+            left: 19.27px;
+            border-radius: 6px;
+            background-color: rgba(135, 167, 6, 0.25);
+            border: 1px solid #87a706;
+            box-sizing: border-box;
+            width: 210.3px;
+            height: 32.7px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+
+        .group-frame {
+            position: absolute;
+            top: 405.98px;
+            left: 19.41px;
+            border-radius: 6px;
+            background-color: rgba(135, 167, 6, 0.25);
+            border: 1px solid #87a706;
+            box-sizing: border-box;
+            width: 210.3px;
+            height: 32.7px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+
+        .frame-div {
+            position: absolute;
+            top: 405.98px;
+            left: 19.54px;
+            border-radius: 6px;
+            background-color: rgba(135, 167, 6, 0.25);
+            border: 1px solid #87a706;
+            box-sizing: border-box;
+            width: 210.3px;
+            height: 32.7px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+
+        .group-parent {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            align-content: flex-end;
+            justify-content: center;
+            gap: 81px;
+            max-width: 1240px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+            font-family: 'Roboto Serif';
+            flex-shrink: 0;
+        }
+
+        .title-divider {
+            position: relative;
+            font-size: 40px;
+            font-weight: 500;
+            font-family: 'Roboto Serif';
+            color: #204f0a;
+            text-align: center;
+            display: inline-block;
+            max-width: 1240px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 1440px;
+            top: 80px;
+            overflow: hidden;
+            height: fit-content;
+            flex-shrink: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        input {
+            flex: 1;
+            background-color: var(--color-background-primary);
+            color: var(--color-brand-primary);
+            border: none;
+            outline: none;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 100%;
+            letter-spacing: 0%;
+            font-family: inherit;
+            position: relative;
+        }
+
+        input::placeholder {
+            color: var(--color-brand-opacity50);
+        }
+
+        .dots-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background-color: var(--color-background-secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--color-brand-contrast);
+        }
+
+        .content-card {
+            display: none !important;
+        }
+
+        .content-card.active {
+            display: flex !important;
+            min-width: 960px;
+            max-width: 960px;
+            min-height: 640px;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 960px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .trioTree {
+            display: none;
+        }
+
+        @media screen and (max-width: 1079px) {
+            .hero-image {
+                content: url(assets/images/imgIndexMobile.png);
+            }
+
+            .title-divider {
+                font-size: 24px;
+                padding-left:var(--spacing-3);
+                padding-right:var(--spacing-3);
+            }
+
+            .why-parent {
+                display: none;
+                width: 0;
+                height: 0;
+                overflow: hidden;
+            }
+
+            .trioTree {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-self:center ;
+                position: relative;
+                min-width: 392px;
+                max-width: 392px;
+                overflow: hidden;
+                max-height: auto;
+                padding-left: var(--spacing-3);
+                padding-right: var(--spacing-3);
+            }
+            .content-card.active {
+                min-width: 392px;
+                max-width: 800px;
+            }
+            .slideshow-container {
+                max-width: 800px;
+                padding-left: var(--spacing-3);
+                padding-right: var(--spacing-3);
+            }
+            .email-parent {
+                max-width: 440px;
+            }
+        }
+        @media (max-width: 440px){
+            .content-card.active {
+                min-width: 325px;
+                max-width: 344px;
+            }
+            .trioTree {
+                min-width: 325px;
+                max-width: 344px;
+            }
+            .slideshow-container {
+                max-width: 344px;
+            }
+            .email-parent{
+                width: auto;
+                max-width: 392px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="preloader"></div>
+    <nav id='navigation'></nav>
+    <img class="hero-image" alt="" src="assets/images/imgIndex.png">
+
+    <div class="title-divider">Tại sao nghiên cứu lại cần tham khảo?</div>
+
+    <div class="why-parent">
+        <div class="why-group">
+            <div class="kham-pha-tri-thuc">
+                <img class="img-kham-pha" alt="" src="assets/images/imgCardTree1.png">
+                <div class="kham-pha-text">Khám Phá Tri Thức Mỗi Ngày</div>
+                <div class="kham-pha-description">Bộ sưu tập các bài nghiên cứu chất lượng cao, được chúng tôi tuyển
+                    chọn kỹ lưỡng để
+                    mang đến những thông tin hữu ích, giúp bạn dễ dàng tiếp cận và khám phá thế giới tri thức một
+                    cách
+                    trọn vẹn.</div>
+            </div>
+            <div class="hanh-trinh">
+                <div class="hanh-trinh-title">Hành Trình Kiến Thức Đầy Cảm Hứng</div>
+                <div class="hanh-trinh-text">Chúng tôi tự hào mang đến những bài nghiên cứu chuyên sâu, hỗ trợ bạn
+                    trong
+                    việc
+                    tìm hiểu và mở rộng hiểu biết. Mỗi bài viết là một cơ hội để bạn học hỏi và phát triển theo cách
+                    của
+                    riêng mình.</div>
+                <img class="img-hanh-trinh" alt="" src="assets/images/imgCardTree3.png">
+            </div>
+        </div>
+        <div class="hieu-qua">
+            <div class="hieu-qua-title">60%</div>
+            <div class="hieu-qua-text">Hiệu quả nghiên cứu tăng lên khi tham khảo các tài liệu đa dạng từ nhiều
+                nguồn
+                đáng tin cậy. Chúng tôi cung cấp nội dung phong phú, giúp bạn có cái nhìn toàn diện và ứng dụng vào
+                thực
+                tế.</div>
+            <img class="img-hieu-qua" alt="" src="assets/images/imgCardTree2.png">
+        </div>
+    </div>
+
+    <img class="trioTree" alt="" src="assets/images/trioTree.png">
+    <!-------------------->
+
+    <div class="title-divider">Tham khảo những bài nghiên cứu tốt nhất</div>
+    <div class="slideshow-container">
+        <div id='content-card-container'>
+        </div>
+        <div class="dots-container">
+        </div>
+    </div>
+
+    <div class="title-divider">Liên hệ với các thầy cô chất lượng</div>
+    <div class="group-parent">
+        <a href="https://fit.neu.edu.vn/lecturer/ths-le-duy-khanh">
+            <div class="rectangle-parent">
+                <div class="group-item">
+                </div>
+                <img class="teacher-img" alt="" src="assets/images/imgThay.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">ThS Duy Khánh</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <a href="https://fit.neu.edu.vn/lecturer/ths-nguyen-phuong-nam">
+            <div class="rectangle-parent">
+                <div class="group-item">
+                </div>
+                <img class="teacher-img" alt="" src="assets/images/imgThayOS.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">ThS Phương Nam</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+
+        <a href="https://fit.neu.edu.vn/lecturer/th-s-pham-thao">
+            <div class="rectangle-parent">
+                <div class="group-item">
+                </div>
+                <img class="teacher-img" alt="" src="assets/images/imgThayThao.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">TS Phạm Thảo</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="https://fit.neu.edu.vn/lecturer/ths-tran-quang-toan">
+            <div class="rectangle-parent">
+                <div class="group-item">
+                </div>
+                <img class="teacher-img" alt="" src="assets/images/imgThayToan.png">
+                <div class="name-container">
+                    <div class="name-wrapper">
+                        <div class="teacher-name">ThS Quang Toàn</div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="receive-information">
+        <div class="title-divider">Đăng ký nhận thông tin ngay</div>
+        <div class="email-parent">
+            <img class="email-icon" alt="" src="assets/icons/icEmail.svg">
+            <input id="email-input" placeholder="Nhập Email của bạn" type="email"></input>
+        </div>
+        <div class="receive-noti" style="cursor: pointer; transition: background-color 0.3s, color 0.3s;"
+            onmouseover="this.style.backgroundColor='#6b8e23'; this.style.color='#fff';"
+            onmouseout="this.style.backgroundColor='#87a706'; this.style.color='#fff';" id="receive-noti-button">
+            <div class="receive-noti-text">Nhận thông báo</div>
+        </div>
+        <p id="error-message" style="display: none; font-size: 16px;">Vui lòng nhập email của bạn</p>
+    </div>
+    <footer id="footer"></footer>
+
+    <script type="module" src="./scripts/component.js"></script>
+    <script type="module">
+        import { server } from "./scripts/config.js";
+
+        document.getElementById("receive-noti-button").onclick = () => {
+            const emailInput = document.getElementById("email-input").value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(emailInput)) {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("error-message").innerText = "Email không hợp lệ";
+                document.getElementById("error-message").style.color = "red";
+                return;
+            }
+            if (emailInput) {
+                fetch(`${server}/user/subscribe`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: emailInput
+                    })
+                }).then(response => response.json()).then(data => {
+                    if (data.success) {
+                        document.getElementById("error-message").style.display = "block";
+                        document.getElementById("error-message").innerText = "Đăng ký thành công!";
+                        document.getElementById("error-message").style.color = "green";
+                        document.getElementById("email-input").value = "";
+                    }
+                    else {
+                        window.location.href = "/login";
+                    }
+                });
+            } else {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("error-message").innerText = "Vui lòng nhập email của bạn";
+                document.getElementById("error-message").style.color = "red";
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = "./scripts/navigator.js";
+            document.body.appendChild(script);
+        });
+        window.addEventListener('load', function () {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 100);
+        });
+
+        fetch(`${server}/api/v1/get-content-card`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                limit: 5,
+                post_id: null,
+                tags: null
+            })
+        }).then(response => response.json()).then(data => {
+            data.content_cards.forEach((card, index) => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'content-card' + (index === 0 ? ' active' : '');
+                cardElement.innerHTML = card.template;
+                cardElement.querySelector('.content-text').onclick = function () {
+                    window.location.href = `./post?post_id=${card._id}`;
+                };
+                cardElement.querySelector('.content-text').style.cursor = 'pointer';
+                document.getElementById('content-card-container').appendChild(cardElement);
+                document.querySelector('.dots-container').innerHTML += `<span class="dot ${index === 0 ? 'active' : ''}" onclick="navigateSlide(${index})"></span>`;
+            });
+        }).then(() => {
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('.content-card');
+            const dots = document.querySelectorAll('.dot');
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.toggle('active', i === index);
+                    dots[i].classList.toggle('active', i === index);
+                });
+                currentSlide = index;
+            }
+
+            function navigateSlide(index) {
+                clearInterval(slideInterval);
+                showSlide(index);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function nextSlide() {
+                const nextIndex = (currentSlide + 1) % slides.length;
+                showSlide(nextIndex);
+            }
+
+            let slideInterval = setInterval(nextSlide, 5000);            
+        })
+
+
+    </script>
+</body>
+
+</html>

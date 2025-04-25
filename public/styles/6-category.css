@@ -1,0 +1,141 @@
+.typography-title {
+  position: relative;
+  width: 100%;
+  padding-top:30px;
+  margin: 0 auto; 
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-image {
+  width: 100%;
+  max-height: 468px;
+  object-fit: cover;
+  display: block;
+}
+
+.title-container {
+  top: 150px;
+  position: absolute;
+  text-align: center;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.title-main {
+  color: var(--true-white, #FFF);
+  font-family: "Roboto Serif", serif;
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 20px;
+}
+
+.title-sub {
+  color: var(--true-white, #FFF);
+  font-family: "Roboto Serif", serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  max-width: 727px;
+  margin: 0 auto;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 32px 17.36%;
+  box-sizing: border-box;
+}
+
+/* Tiêu đề mỗi nhóm */
+.t-cc-nhmt {
+  text-align: center;
+  color: var(--brand-constrast, #204F0A);
+  font-family: "Roboto Serif";
+  font-size: 32px;
+  font-weight: 400;
+  padding-bottom: 24px;
+}
+
+/* Nhóm tag container */
+.tag-combination {
+  display: flex;
+  justify-content: center;  /* căn giữa nội dung */
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  gap: 10px;
+  width: 100%;
+  max-width: 1200px; /* Giới hạn chiều rộng nếu cần */
+}
+
+/* Tag item */
+.tag {
+  display: inline-flex;
+  padding: 6px 12px;
+  background-color: #87A706 !important;
+  border-radius: 8px;
+  font-family: "Roboto Serif", serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #FFF;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background-color: var(--color-brand-opacity15, #EAF4DC) !important;
+  border: 2px solid #87A706;
+  color: #87A706 !important;
+  cursor: pointer;
+}
+
+
+
+
+
+
+/* --- iPhone 14 Pro Max hoặc tương đương --- */
+@media (max-width: 1079px) {
+  .typography-title {
+    margin-top: 50px; /* Dư khoảng trống cho navbar */
+  }
+  .hero-image{
+    height: 274px;
+  }
+  .title-main {
+    font-size: 48px;
+    text-align: center;
+    white-space: nowrap; /* Ngăn chữ xuống dòng */
+  }
+
+  .title-sub {
+    display: none !important; /* Ẩn trên điện thoại */
+  }
+
+  .category {
+    padding: 24px 16px; /* Giảm padding hai bên khi trên mobile */
+  }
+
+  .t-cc-nhmt {
+    font-size: 24px; /* Nhỏ hơn một chút cho vừa màn hình */
+    padding-bottom: 16px;
+  }
+
+  .tag {
+    font-size: 11px; /* Có thể giảm nhẹ chữ nếu cần */
+    padding: 5px 10px;
+  }
+
+  .tag-combination {
+    gap: 8px;
+    padding-bottom: 16px;
+  }
+}

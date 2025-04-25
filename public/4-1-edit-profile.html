@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit profile | Leafy</title>
+    <link rel="icon" type="favicon/icon" href="./assets/icons/icBrandLogo1.svg">
+    <link href="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./components/component-styles.css">
+    <script src="https://unpkg.com/cropperjs@1.5.13/dist/cropper.min.js"></script>
+
+    <style>
+        @import url("./styles/tokens.css");
+
+        .image-container {
+            position: relative;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #00000080;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+        }
+
+        .image-container:hover .overlay {
+            opacity: 1; 
+        }
+
+        .camera-icon {
+            color: white;
+            font-size: 24px;
+            background: none;
+            border: none;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            top: -70px;
+            border-radius: 50%;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            z-index: 10;
+            border-radius: 50%;
+        }
+        .avatar-container .overlay {
+            border-radius: 50%; 
+        }
+        .avatar-container.image-container.overlay {
+            border-radius: 50%;
+        }
+
+        .profile-background-container {
+            position: relative;
+            width: 100%;
+            height: 310px;
+        }
+
+        .profile-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (min-width: 1080px) {
+            .container {
+                padding: 0px 100px 304px 100px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 32px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .profile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                position: relative;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 36px;
+                font-weight: 500;
+                color: var(--brand-constrast);
+                text-align: center;
+                margin: 0;
+                padding-top: 100px;
+            }
+
+            .form {
+                width: 100%;
+                max-width: 1240px;
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .form-group label {
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--brand-constrast);
+            }
+
+            .form .form-group input {
+                height: 49px;
+                padding: 0 16px;
+                background: var(--background-primary, #F8F8E7);
+                border-radius: var(--spacing-2);
+                border: 1px solid var(--brand-opacity50, #87A70680);
+                font-size: var(--spacing-2);
+                color: var(--background-primary);
+                outline: none;
+                box-sizing: border-box;
+                width: 100%;
+            }
+
+            .note {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 24px;
+                color: var(--brand-constrast);
+                margin: 0;
+            }
+
+            .submit-button {
+                justify-content: center;
+                font-family: inherit;
+                width: 100%;
+                padding: 16px 32px;
+                background: var(--color-brand-primary);
+                border-radius: 16px;
+                color: var(--color-true-white);
+                font-size: 24px;
+                font-weight: 500;
+                text-align: center;
+                border: none;
+                cursor: pointer;
+                letter-spacing: 0%;
+                box-sizing: border-box;
+            }
+
+            .submit-button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 1079px) {
+            .container {
+                padding: 0px 24px 800px 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 32px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .profile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                position: relative;
+                justify-content: center;
+            }
+
+            h1 {
+                font-size: 36px;
+                font-weight: 500;
+                color: var(--brand-constrast);
+                text-align: center;
+                margin: 0;
+                padding-top: 100px;
+            }
+
+            .form {
+                width: 100%;
+                max-width: 1240px;
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .form-group label {
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--brand-constrast);
+            }
+
+            .form .form-group input {
+                height: 49px;
+                padding: 0 16px;
+                background: var(--background-primary, #F8F8E7);
+                border-radius: var(--spacing-2);
+                border: 1px solid var(--brand-opacity50, #87A70680);
+                font-size: var(--spacing-2);
+                color: var(--background-primary);
+                outline: none;
+                box-sizing: border-box;
+                width: 100%;
+            }
+
+            .note {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 24px;
+                color: var(--brand-constrast);
+                margin: 0;
+            }
+
+            .submit-button {
+                justify-content: center;
+                font-family: inherit;
+                width: 100%;
+                padding: 16px 32px;
+                background: var(--color-brand-primary);
+                border-radius: 16px;
+                color: var(--color-true-white);
+                font-size: 24px;
+                font-weight: 500;
+                text-align: center;
+                border: none;
+                cursor: pointer;
+                letter-spacing: 0%;
+                box-sizing: border-box;
+            }
+
+            .submit-button-group {
+                display: flex;
+                flex-direction: column;
+                gap: 32px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader"></div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+    </script>
+    <nav id='navigation'></nav>
+
+    <div style="background-color: var(--color-background-primary);" class="profile-background-container image-container">
+        <img class="profile-background" alt="background" id="edit-profile-background">
+        <div class="overlay">
+           <img src="assets/icons/icCameraPlus.svg">
+        </div>
+    </div>
+    <input type="file" id="background-picture-input" accept="image/*" style="display: none;">
+
+    <div class="container">
+
+        <div class="avatar-container image-container">
+            <img class="avatar" alt="avatar" id="edit-profile-avatar">
+            <div class="overlay">
+                <img src="assets/icons/icCameraPlus.svg">
+            </div>
+        </div>
+        <input type="file" id="profile-picture-input" accept="image/*" style="display: none;">
+        <img id="preview" style="display: none;">
+
+        <div class="profile">
+            <h1>Chỉnh sửa thông tin cá nhân</h1>
+        </div>
+
+        <form class="form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="profile-username" readonly>
+            </div>
+            <div class="form-group">
+                <label for="fullname">Họ và tên</label>
+                <input type="text" id="profile-display-name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="profile-email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Số điện thoại</label>
+                <input type="text" id="phone-number">
+            </div>
+            <div class="form-group">
+                <label for="organization">Tổ chức</label>
+                <input type="text" id="organization">
+            </div>
+            <div class="form-group">
+                <label for="org-id">Mã tổ chức (MSV, mã cán bộ, ...)</label>
+                <input type="text" id="org-id">
+            </div>
+            <div class="submit-button-group">
+                <p class="note">*Nhấn vào ảnh đại diện hoặc ảnh nền để thay đổi.</p>
+                <button type="submit" class="submit-button">Cập nhật thông tin</button>
+            </div>
+        </form>
+    </div>
+    <footer id='footer'></footer>
+    <script src="./scripts/component.js"></script>
+    <script type="module" src="./scripts/component.js"></script>
+    <script type="module">
+        import { server } from "./scripts/config.js";
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = "./scripts/navigator.js";
+            document.body.appendChild(script);
+        });
+
+        async function init() {
+            let response = await fetch(`${server}/user/get-user-info`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+            });
+            response = await response.json();
+            if (!response.success) {
+                window.location.href = "./login";
+                return;
+            }
+
+            const data = response.data;
+
+            const avatar = document.getElementById("edit-profile-avatar");
+            const background = document.getElementById("edit-profile-background");
+            const displayName = document.getElementById("profile-display-name");
+            const email = document.getElementById("profile-email");
+            const username = document.getElementById("profile-username");
+            const phoneNumber = document.getElementById("phone-number");
+            const organization = document.getElementById("organization");
+            const orgId = document.getElementById("org-id");
+
+            background.src = data.background_picture_url;
+            avatar.src = data.profile_picture_url;
+            displayName.value = data.display_name;
+            email.value = data.email;
+            username.value = data.username;
+            if (data.phone_number) phoneNumber.value = data.phone_number;
+            if (data.organization) organization.value = data.organization;
+            if (data.organization_id) orgId.value = data.organization_id;
+
+            let cropper;
+
+            avatar.parentElement.addEventListener("click", function() {
+                document.getElementById("profile-picture-input").click();
+            });
+
+            background.parentElement.addEventListener("click", function() {
+                document.getElementById("background-picture-input").click();
+            });
+
+            document.getElementById("profile-picture-input").addEventListener("change", function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const modalOverlay = document.createElement('div');
+                modalOverlay.style.position = 'fixed';
+                modalOverlay.style.top = '0';
+                modalOverlay.style.left = '0';
+                modalOverlay.style.width = '100%';
+                modalOverlay.style.height = '100%';
+                modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                modalOverlay.style.zIndex = '1000';
+                modalOverlay.style.display = 'flex';
+                modalOverlay.style.justifyContent = 'center';
+                modalOverlay.style.alignItems = 'center';
+
+                const modalContent = document.createElement('div');
+                modalContent.style.backgroundColor = 'white';
+                modalContent.style.padding = '20px';
+                modalContent.style.borderRadius = '8px';
+                modalContent.style.maxWidth = '90%';
+                modalContent.style.maxHeight = '90%';
+                modalContent.style.display = 'flex';
+                modalContent.style.flexDirection = 'column';
+                modalContent.style.alignItems = 'center';
+
+                const cropperImage = document.createElement('img');
+                cropperImage.style.maxWidth = '100%';
+                cropperImage.style.maxHeight = '70vh';
+                cropperImage.src = URL.createObjectURL(file);
+
+                const buttonContainer = document.createElement('div');
+                buttonContainer.style.display = 'flex';
+                buttonContainer.style.gap = '10px';
+                buttonContainer.style.marginTop = '15px';
+
+                const applyButton = document.createElement('button');
+                applyButton.textContent = 'Hoàn tất';
+                applyButton.style.padding = '10px 20px';
+                applyButton.style.backgroundColor = 'var(--color-brand-primary)';
+                applyButton.style.color = 'white';
+                applyButton.style.border = 'none';
+                applyButton.style.borderRadius = '8px';
+                applyButton.style.cursor = 'pointer';
+
+                const cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Hủy';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.backgroundColor = 'var(--color-background-primary)';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '8px';
+                cancelButton.style.cursor = 'pointer';
+
+                buttonContainer.appendChild(cancelButton);
+                buttonContainer.appendChild(applyButton);
+                modalContent.appendChild(cropperImage);
+                modalContent.appendChild(buttonContainer);
+                modalOverlay.appendChild(modalContent);
+                document.body.appendChild(modalOverlay);
+
+                let cropper = new Cropper(cropperImage, {
+                    aspectRatio: 1,
+                    viewMode: 1,
+                    autoCropArea: 1,
+                });
+
+                applyButton.addEventListener('click', function() {
+                    const canvas = cropper.getCroppedCanvas({
+                        width: 300,
+                        height: 300
+                    });
+
+                    avatar.src = canvas.toDataURL();
+
+                    cropper.destroy();
+                    document.body.removeChild(modalOverlay);
+                });
+
+                cancelButton.addEventListener('click', function() {
+                    cropper.destroy();
+                    document.body.removeChild(modalOverlay);
+                });
+            });
+
+            document.getElementById("background-picture-input").addEventListener("change", function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const modalOverlay = document.createElement('div');
+                modalOverlay.style.position = 'fixed';
+                modalOverlay.style.top = '0';
+                modalOverlay.style.left = '0';
+                modalOverlay.style.width = '100%';
+                modalOverlay.style.height = '100%';
+                modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                modalOverlay.style.zIndex = '1000';
+                modalOverlay.style.display = 'flex';
+                modalOverlay.style.justifyContent = 'center';
+                modalOverlay.style.alignItems = 'center';
+
+                const modalContent = document.createElement('div');
+                modalContent.style.backgroundColor = 'white';
+                modalContent.style.padding = '20px';
+                modalContent.style.borderRadius = '8px';
+                modalContent.style.maxWidth = '90%';
+                modalContent.style.maxHeight = '90%';
+                modalContent.style.display = 'flex';
+                modalContent.style.flexDirection = 'column';
+                modalContent.style.alignItems = 'center';
+
+                const cropperImage = document.createElement('img');
+                cropperImage.style.maxWidth = '100%';
+                cropperImage.style.maxHeight = '70vh';
+                cropperImage.src = URL.createObjectURL(file);
+
+                const buttonContainer = document.createElement('div');
+                buttonContainer.style.display = 'flex';
+                buttonContainer.style.gap = '10px';
+                buttonContainer.style.marginTop = '15px';
+
+                const applyButton = document.createElement('button');
+                applyButton.textContent = 'Hoàn tất';
+                applyButton.style.padding = '10px 20px';
+                applyButton.style.backgroundColor = 'var(--color-brand-primary)';
+                applyButton.style.color = 'white';
+                applyButton.style.border = 'none';
+                applyButton.style.borderRadius = '8px';
+                applyButton.style.cursor = 'pointer';
+
+                const cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Hủy';
+                cancelButton.style.padding = '10px 20px';
+                cancelButton.style.backgroundColor = 'var(--color-background-primary)';
+                cancelButton.style.border = 'none';
+                cancelButton.style.borderRadius = '8px';
+                cancelButton.style.cursor = 'pointer';
+
+                buttonContainer.appendChild(cancelButton);
+                buttonContainer.appendChild(applyButton);
+                modalContent.appendChild(cropperImage);
+                modalContent.appendChild(buttonContainer);
+                modalOverlay.appendChild(modalContent);
+                document.body.appendChild(modalOverlay);
+
+                let cropper = new Cropper(cropperImage, {
+                    viewMode: 1,
+                    autoCropArea: 1,
+                });
+
+                applyButton.addEventListener('click', function() {
+                    const canvas = cropper.getCroppedCanvas({
+                        maxWidth: 1920,
+                        maxHeight: 800
+                    });
+
+                    background.src = canvas.toDataURL();
+
+                    cropper.destroy();
+                    document.body.removeChild(modalOverlay);
+                });
+
+                cancelButton.addEventListener('click', function() {
+                    cropper.destroy();
+                    document.body.removeChild(modalOverlay);
+                });
+            });
+
+            const form = document.querySelector(".form");
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const formData = new FormData();
+
+                formData.append("display_name", displayName.value);
+                formData.append("email", email.value);
+                formData.append("phone_number", phoneNumber.value);
+                formData.append("organization", organization.value);
+                formData.append("organization_id", orgId.value);
+
+                if (avatar.src.startsWith('data:')) {
+                    const response = await fetch(avatar.src);
+                    const blob = await response.blob();
+                    const profilePicture = new File([blob], "profile-picture.jpg", { type: "image/jpeg" });
+                    formData.append("profile_picture", profilePicture);
+                }
+
+                if (background.src.startsWith('data:')) {
+                    const response = await fetch(background.src);
+                    const blob = await response.blob();
+                    const backgroundPicture = new File([blob], "background.jpg", { type: "image/jpeg" });
+                    formData.append("background_picture", backgroundPicture);
+                }
+
+                try {
+                    const response = await fetch(`${server}/user/update-profile`, {
+                        method: "POST",
+                        body: formData,
+                        credentials: "include",
+                    });
+                    const data = await response.json();
+                    if (data.success) {
+                        window.location.href = "./profile";
+                    } else {
+                        alert("Cập nhật thông tin thất bại!");
+                        window.location.reload();
+                    }
+                } catch (error) {
+                    console.error("Error updating profile:", error);
+                    alert("Có lỗi xảy ra khi cập nhật thông tin!");
+                }
+            });
+        }
+        init();
+    </script>
+</body>
+
+</html>

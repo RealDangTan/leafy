@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/icBrandLogo1.svg" sizes="any" />
+    <link rel="stylesheet" href="components/component-styles.css">
+    <style>
+        @import url('styles/tokens.css');
+        #post-image{
+            width: 100%;
+            position: relative;
+            margin: 0 !important;
+            top: 0px;
+            right: 0px;
+            left: 0px;
+            height: 468px;
+            max-width: 100%;
+            overflow: hidden;
+            flex-shrink: 1;
+            object-fit: cover;
+        }
+        #post-title{
+            width: 100%;
+            position: relative;
+            font-size: 2rem;
+            text-align: left;
+            font-weight: 500;
+        }
+        #post-description{
+            width: 100%;
+            position: relative;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
+        }
+        #post-content h1{
+            font-size: 1.5rem;
+        }
+        .left img{
+            width: 100%;
+            height: auto;
+        }
+        .left{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 40px;
+            z-index: 0;
+            flex: 1;
+            box-sizing: border-box;
+        }
+        .info-title-text{
+            font-weight: 500;
+            font-size: 1.5rem;
+        }
+        .info{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: var(--spacing-1);
+        }
+        .post-info{
+            display: flex;
+            border: 2px solid var(--color-brand-primary);
+            border-radius: 16px;
+            padding: var(--spacing-3);
+            flex-direction: column;
+            gap: var(--spacing-2);
+            color: var(--color-brand-primary);
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .relate-topic-title{
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1.5rem;
+            gap: var(--spacing-1);
+        }
+        .tag{
+            position: relative;
+            border-radius: 8px;
+            background-color: var(--color-brand-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px;
+            box-sizing: border-box;
+            color: var(--color-true-white);
+            font-size: 12px;
+        }
+        .relate-topic-tag{
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 10px;
+        }
+        .relate-topic{
+            display: flex;
+            border: 2px solid var(--color-brand-primary);
+            border-radius: 16px;
+            padding: 20px;
+            flex-direction: column;
+            gap: var(--spacing-2);
+            color: var(--color-brand-primary);
+            justify-content: center;
+            align-items: flex-start;
+        }
+        #edit-button{
+            width: 100%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-brand-primary);
+            color: var(--color-true-white);
+            font-weight: 500;
+            font-size: 1.5rem;
+            gap: var(--spacing-1);
+            position: relative;
+            border-radius: 16px;
+            padding: 8px 8px;
+            box-sizing: border-box;
+        }
+        #edit-button:hover{
+            background-color: var(--color-brand-opacity50);
+        }
+        #delete-button{
+            width: 100%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f86364;
+            color: var(--color-true-white);
+            font-weight: 500;
+            font-size: 1.5rem;
+            gap: var(--spacing-1);
+            position: relative;
+            border-radius: 16px;
+            padding: 8px 8px;
+            box-sizing: border-box;
+        }
+        #delete-button:hover{
+            background-color: red;
+        }
+        .right{
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-3);
+            width: 360px;
+            flex-shrink: 0;
+            position: sticky;
+            align-self: flex-start;
+            top: 104px;
+        }
+        .post{
+            display: flex;
+            gap: 107px;
+            padding: 34px 150px;
+        }
+        @media (max-width: 1079px){
+            #post-image{
+                height: 284px;
+            }
+            #post-title{
+                font-size: 1.5rem;
+            }
+            #post-content h1{
+                font-size: 1.25rem;
+            }
+            .post-info{
+                order: 1;
+            }
+            
+            .right{
+                width: 100%;
+                flex-shrink: 1;
+                display: contents;
+            }
+            #edit-button{
+                order: 4;
+                align-self: center;
+                font-size: 1.25rem;
+                width: auto;
+                padding: 8px 16px;
+            }
+            #delete-button{
+                order: 5;
+                align-self: center;
+                font-size: 1.25rem;
+                width: 161.69px;
+                padding: 8px 16px;
+            }
+            .left{
+                order: 2;
+            }
+            .relate-topic{
+                order: 3;
+            }
+
+            .post{
+                flex-direction: column;
+                padding-top: var(--spacing-2);
+                padding-bottom: var(--spacing-3);
+                padding-left: var(--spacing-3);
+                padding-right: var(--spacing-3);
+                gap: var(--spacing-4);
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+    <div id="preloader"></div>
+    <script>
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 2000);
+        });
+    </script>
+    <nav id="navigation"></nav>
+    <img id="post-image">
+    <div class="post">
+        <div class="left">
+            <div id="post-title"></div>
+            <div id="post-content"></div>
+        </div>
+        <div class="right">
+            <div class="post-info">
+                <div  class="info">
+                    <img src="assets/icons/icInfo.svg">
+                    <span class="info-title-text" id="info-title">Thông tin bài viết</span>
+                </div>
+                <div class="info">
+                    <img src="assets/icons/icAccount.svg">
+                    <span class="info-text" id="author"></span>
+                </div>
+                <div  class="info">
+                    <img src="assets/icons/icTime.svg">
+                    <span class="info-text" id="post-time"></span>
+                </div>
+                <div  class="info">
+                    <img src="assets/icons/icEye.svg">
+                    <span class="info-text" id="views"></span>
+                </div>
+            </div>
+            <div class="relate-topic">
+                <div class="relate-topic-title">
+                    <img src="assets/icons/icHot.svg">
+                    <span class="relate-topic-title-text">Chủ đề liên quan</span>
+                </div>
+                <div class="relate-topic-tag" id = 'relate-topic-tag'></div>
+            </div>
+            <button id="edit-button">
+                <img src="assets/icons/icEdit.svg">
+                <span class="button-text">Chỉnh sửa</span>
+            </button>
+            <button id="delete-button">
+                <span class="button-text">Xóa</span>
+            </button>
+        </div>
+    </div>
+    <footer id="footer"></footer>
+    <script type="module" src="./scripts/component.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			const script = document.createElement("script");
+			script.type = "module";
+			script.src = "./scripts/navigator.js";
+			document.body.appendChild(script);
+		});
+	</script>
+    <script type="module">
+        import {server} from './scripts/config.js';
+        import {still_tags_loader_with_link} from './scripts/tags_loader.js';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('post_id');
+        if (!postId) window.location.href = '/archive';
+
+        await fetch(`${server}/api/v1/get-post?post_id=${postId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                data = data.data;
+                marked.setOptions({
+                    sanitize: false,
+                });
+                document.getElementById('post-image').src = data.image_url;
+                document.getElementById('post-title').innerText = data.title;
+                const content_container = document.getElementById('post-content');
+                content_container.style.whiteSpace = 'pre-wrap';
+                content_container.innerHTML = marked.parse(data.md_content || "");
+                document.getElementById('author').innerText = data.author_name;
+                document.getElementById('post-time').innerText = data.date_created;
+                document.getElementById('views').innerText = data.view;
+            }
+        })
+        .catch(error => console.error('Error fetching post:', error));
+
+        fetch(`${server}/api/v1/get-search-value`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            if (data.success) {
+                data.data.tags.forEach(tag => {
+                    const container = document.getElementById('relate-topic-tag');
+                    still_tags_loader_with_link(container, [{text: tag.name, link: `/archive?tag=${tag._name}`}]);
+                });
+            }
+        })
+        fetch(`${server}/user/check-post-author?post_id=${postId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }).then(response => response.json()).then(data => {
+            if (!data.success || data.is_author === false) {
+                document.getElementById('edit-button').style.display = 'none';
+                document.getElementById('delete-button').style.display = 'none';
+                return
+            } 
+            document.getElementById('edit-button').onclick = () => window.location.href = `/edit-post?post_id=${postId}`;
+            document.getElementById('delete-button').onclick = () => {
+                if (confirm("Bạn có chắc chắn muốn xóa bài viết này?")) {
+                    fetch(`${server}/user/delete-post`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({post_id: postId})
+                    }).then(response => response.json()).then(data => {
+                        if (data.success) window.location.href = '/archive';
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

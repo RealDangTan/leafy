@@ -1,0 +1,26 @@
+<div class="still-tags-container">
+    <% tags.forEach(tag => { %>
+        <div class="still-content-tag" onclick="window.location.href='/archive?tag=<%= tag %>'">
+            <div class="tag-text"><%= tag %></div>
+        </div>
+    <% }) %>
+</div>
+<img class="image-icon" alt="" src="<%= imageUrl %>">
+<div class="content-text">
+    <div class="title"><%= title %></div>
+    <div class="description"><%= subtitle %></div>
+</div>
+<div class="card-footer">
+    <div class="footer-info">
+        <img class="account-circle-icon" alt="" src="../assets/icons/icAccount.svg">
+        <div class="metadata-text"><%= author %></div>
+    </div>
+    <div class="footer-info date-info">
+        <img class="account-circle-icon" alt="" src="../assets/icons/icTime.svg">
+        <div class="metadata-text"><%= date %></div>
+    </div>
+    <div class="footer-info">
+        <img class="account-circle-icon" alt="" src="../assets/icons/icEye.svg">
+        <div class="metadata-text"><%= views %></div>
+    </div>
+</div>

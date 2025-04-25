@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
+
+	<title>Profile | Leafy</title>
+	<link rel="icon" type="favicon/icon" href="assets/icons/icBrandLogo1.svg">
+	<link rel="stylesheet" href="components/component-styles.css">
+	<style>
+		@import url("styles/tokens.css");
+
+		.profile-background {
+			width: 100%;
+			position: relative;
+			margin: 0 !important;
+			top: 0px;
+			right: 0px;
+			left: 0px;
+			max-width: 100%;
+			overflow: hidden;
+			height: 310px;
+			flex-shrink: 0;
+			object-fit: cover;
+		}
+
+		.avatar {
+			width: 140px;
+			position: absolute;
+			top: -70px;
+			border-radius: 50%;
+			max-height: 100%;
+			object-fit: cover;
+			z-index: 10;
+			border: 8px solid var(--color-background-primary);
+		}
+
+		.name {
+			position: relative;
+			font-weight: 500;
+		}
+
+		.username {
+			position: relative;
+			font-size: 20px;
+			font-weight: 500;
+		}
+
+		.profile-header {
+			color: var(--color-brand-primary);
+			position: relative;
+			padding-top: 90px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 12px;
+			font-size: 3em;
+		}
+
+		.follow-icon {
+			width: 24px;
+			position: relative;
+			max-height: 100%;
+			overflow: hidden;
+			flex-shrink: 0;
+		}
+
+		.follow-text {
+			position: relative;
+			font-family: inherit;
+			font-size: var(--spacing-3);
+			font-weight: 500;
+			color: var(--color-true-white);
+			text-align: left;
+		}
+
+		.follow {
+			font-family: inherit;
+			border: none;
+			border-radius: 16px;
+			background-color: var(--color-brand-primary);
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: var(--spacing-2) var(--spacing-4);
+			gap: var(--spacing-1);
+			box-sizing: border-box;
+		}
+
+		.followed {
+			font-family: inherit;
+			border: 2px solid var(--color-brand-primary);
+			border-radius: 16px;
+			background: none;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: var(--spacing-2) var(--spacing-4);
+			gap: var(--spacing-1);
+			box-sizing: border-box;
+		}
+
+		.followed .follow-text {
+			color: var(--color-brand-primary);
+		}
+		.followed path {
+			fill: var(--color-brand-primary);
+		}
+
+		.share-icon {
+			width: 24px;
+			position: relative;
+			height: 24px;
+			overflow: hidden;
+			flex-shrink: 0;
+			box-sizing: border-box;
+		}
+
+		.share {
+			border: none;
+			width: 60px;
+			border-radius: 16px;
+			background-color: var(--color-brand-opacity25);
+			height: 60px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			box-sizing: border-box;
+		}
+
+		.follow:hover {
+			background-color: var(--color-hover);
+		}
+
+		.follow:active {
+			background-color: var(--color-clicked);
+		}
+
+		.button {
+			position: relative;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 16px;
+			text-align: left;
+			font-size: 24px;
+			color: var(--color-true-white);
+		}
+
+		.quantity {
+			align-self: stretch;
+			position: relative;
+			font-weight: 500;
+		}
+
+		.stat {
+			align-self: stretch;
+			position: relative;
+			font-size: 24px;
+			font-weight: 500;
+		}
+
+		.stats {
+			width: 180px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 4px;
+		}
+
+		.profile-stats {
+			position: relative;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 32px;
+			text-align: center;
+			font-size: 64px;
+			color: var(--color-brand-primary);
+		}
+
+		.tabs button {
+			font-weight: 500;
+			font-size: 24px;
+			font-family: inherit;
+			color: var(--color-brand-primary);
+			border: none;
+			background: none;
+			border-radius: 999px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			padding: 12px 24px;
+		}
+
+		.tabs button.active {
+			background-color: var(--color-brand-opacity15);
+			color: var(--color-brand-primary);
+		}
+
+		.tabs {
+
+			position: relative;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: var(--spacing-3);
+			text-align: center;
+			color: var(--color-brand-primary);
+			font-family: inherit;
+			padding-bottom: 43px;
+		}
+
+		.profile {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 43px;
+			width: 100%;
+		}
+
+		.content {
+			display: none;
+			padding: var(--spacing-3) 0;
+			gap: var(--spacing-3);
+			justify-content: center;
+			flex-direction: column;
+			width: 100%;
+
+		}
+
+		.content.active {
+			display: flex;
+		}
+
+		.contents {
+			position: relative;
+			width: 70%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: var(--spacing-5);
+		}
+
+		.contents div {
+			position: relative;
+			gap: 16px;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		@media screen and (max-width: 1079px) {
+			.profile-background {
+				content: url(assets/images/profile-background-small.svg);
+			}
+
+			.username {
+				font-size: 1rem;
+			}
+
+			.profile-header {
+				font-size: 2.25em;
+			}
+
+			.follow-text {
+				font-size: 1rem;
+			}
+
+			.follow,
+			.followed {
+				height: 50px;
+			}
+
+			.share {
+				height: 50px;
+				width: 50px;
+			}
+
+			.quantity {
+				font-size: 2.25rem;
+			}
+
+			.stat {
+				font-size: 1rem;
+			}
+
+			.profile-stats {
+				gap: 23.5px;
+			}
+
+			.tabs {
+				padding-bottom: 16px;
+				;
+			}
+
+			.profile {
+				gap: 16px;
+			}
+
+			.contents {
+				width: 88%;
+				padding-bottom: 24px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="preloader"></div>
+	<nav id = 'navigation'></nav>
+	<img class="profile-background" id = 'profile-background' alt="" src="assets/images/profile-background.png">
+	<div class="profile">
+		<div class="profile-header">
+			<img class="avatar" alt="avatar" id = 'main-profile-picture' src = 'assets/images/imgDefaultProfilePicture.png'>
+			<div class="name" id = 'profile-display-name'></div>
+			<div class="username" id = 'profile-username'></div>
+		</div>
+
+
+		<div class="button">
+			<button id="edit-button" class="follow" style="display: none;">
+				<img  src="assets/icons/icEdit.svg" alt="edit" class="follow-icon" >
+				<span class="follow-text" id = 'edit-profile'>Chỉnh sửa</span>
+			</button>
+			<button id="follow-button" class="follow">	
+				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g clip-path="url(#clip0_1254_1895)">
+					<g clip-path="url(#clip1_1254_1895)">
+					<path d="M13.5 7H11.5V11H7.5V13H11.5V17H13.5V13H17.5V11H13.5V7ZM12.5 2C6.98 2 2.5 6.48 2.5 12C2.5 17.52 6.98 22 12.5 22C18.02 22 22.5 17.52 22.5 12C22.5 6.48 18.02 2 12.5 2ZM12.5 20C8.09 20 4.5 16.41 4.5 12C4.5 7.59 8.09 4 12.5 4C16.91 4 20.5 7.59 20.5 12C20.5 16.41 16.91 20 12.5 20Z" fill="white"/>
+					</g>
+					</g>
+					<defs>
+					<clipPath id="clip0_1254_1895">
+					<rect width="24" height="24" fill="white" transform="translate(0.5)"/>
+					</clipPath>
+					<clipPath id="clip1_1254_1895">
+					<rect width="24" height="24" fill="white" transform="translate(0.5)"/>
+					</clipPath>
+					</defs>
+					</svg>
+				<span class="follow-text" id = follow-text>Theo dõi</span>
+			</button>
+
+			<button id = 'share-button' class="share">
+				<img src="assets/icons/icShare.png" alt="share" class="share-icon">
+			</button>
+		</div>
+		<div class="profile-stats">
+			<div class="stats">
+				<div class="quantity" id = 'profile-total-posts'></div>
+				<div class="stat">Bài viết</div>
+			</div>
+			<div class="stats">
+				<div class="quantity" id = 'profile-followers'></div>
+				<div class="stat">Theo dõi</div>
+			</div>
+			<div class="stats">
+				<div class="quantity" id = 'profile-total-views'></div>
+				<div class="stat">Lượt xem</div>
+			</div>
+		</div>
+		<div class="tabs" id="tab-navigator">
+			<button class="active" id = 'posts-tab-btn'>
+				Bài viết
+			</button>
+			<button id = 'viewed-tab-btn'>
+				Đã lưu
+			</button>
+		</div>
+	</div>
+	<div class="contents">
+		<div id="profile-posts" class="content active">
+		</div>
+		<div id="profile-viewed" class="content">
+		</div>
+	</div>
+	<footer id="footer"></footer>
+	<script type = "module">
+		const actionButton = document.getElementById('edit-button');
+		const followButton = document.getElementById('follow-button');
+		
+		window.addEventListener('load', function() {
+			const preloader = document.getElementById('preloader');
+			setTimeout(function() {
+				preloader.style.display = 'none';
+			}, 1000);
+		});
+
+		function switch_tab(elem1, elem2) {
+			for (let e of document.getElementById("tab-navigator").querySelectorAll("button")) {
+				e.classList.remove("active");
+			}
+
+			for (let e of document.querySelectorAll(".content")) {
+				e.classList.remove("active");
+			}
+
+			elem1.classList.add("active");
+
+			document.getElementById(elem2).classList.add("active");
+		}
+		document.getElementById("posts-tab-btn").addEventListener("click", function() {
+			switch_tab(this, "profile-posts");
+		});
+		document.getElementById("viewed-tab-btn").addEventListener("click", function() {
+			switch_tab(this, "profile-viewed");
+		});
+		document.getElementById("edit-profile").addEventListener("click", function() {
+			window.location.href = "/edit-profile";
+		});
+
+
+		import {server} from './scripts/config.js';
+
+		const current_url = new URL(window.location.href);
+		const params = current_url.searchParams;
+
+		let isLoggedIn = false;
+		let isOwner = false;
+		let isFollowing = false;
+
+		fetch(`${server}/user/get-profile?user_id=${params.get('user_id')}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		}).then((response) => response.json()).then(async (data) => {
+			if (!data.success && data.message === 'Unauthorized') {
+				window.location.href = '/login';
+				return;
+			}
+			document.getElementById('main-profile-picture').src = data.data.profile_picture_url;
+			document.getElementById('profile-background').src = data.data.background_picture_url;
+			if (data.success) {
+				const user = data.data;
+				isLoggedIn = user.is_login;
+				isOwner = user.is_owner;
+				document.getElementById('profile-display-name').textContent = user.display_name;
+				document.getElementById('profile-username').textContent = `@${user.username}`;
+				document.getElementById('profile-total-posts').textContent = user.owned_posts.length;
+				document.getElementById('profile-followers').textContent = user.followers;
+				document.getElementById('profile-total-views').textContent = user.total_views;			
+				const profile_posts_container = document.getElementById('profile-posts');
+				const profile_viewed_container = document.getElementById('profile-viewed');
+				let posts_content_card = await fetch(`${server}/api/v1/get-content-card`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						owned_user_id: user._id,
+						post_id: null,
+						tags: null,
+					}),
+				})
+				document.getElementById('share-button').addEventListener('click', function() {
+					const url = `${window.location.origin}/profile?user_id=${user._id}`;
+					navigator.clipboard.writeText(url)
+				});
+				posts_content_card = await posts_content_card.json();
+				if (posts_content_card.success) {
+					if (posts_content_card.content_cards.length === 0) {
+						const div = document.createElement('div');
+						div.className = 'content-card';
+						div.innerHTML = `<p style = "color: var(--color-brand-primary); font-size: 32px; text-align: center">Nhà nghiên cứu này chưa có bài viết nào</p>`;
+						div.style = 'padding: 200px 0px; align-items: center; justify-content: center;';
+						profile_posts_container.appendChild(div);
+					}
+					for (let post of posts_content_card.content_cards) {
+						const div = document.createElement('div');
+						div.className = 'content-card';
+						div.innerHTML = post.template;
+						div.style.cursor = 'pointer';
+						div.onclick = function() {
+							window.location.href = `/post?post_id=${post._id}`;
+						}
+						profile_posts_container.appendChild(div);
+					}
+				}
+				let profile_viewed_card = await fetch(`${server}/api/v1/get-content-card`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						post_id: user.viewed_posts,
+					}),
+				})
+				profile_viewed_card = await profile_viewed_card.json();
+
+				if (profile_viewed_card.success) {
+					if (profile_viewed_card.content_cards.length === 0) {
+						const div = document.createElement('div');
+						div.className = 'content-card';
+						div.innerHTML = `<p style = "color: var(--color-brand-primary); font-size: 32px">Nhà nghiên cứu này chưa xem bài viết nào</p>`;
+						div.style = 'padding: 200px 0px; align-items: center; justify-content: center;';
+						profile_viewed_container.appendChild(div);
+					}
+					for (let post of profile_viewed_card.content_cards) {
+						const div = document.createElement('div');
+						div.className = 'content-card';
+						div.innerHTML = post.template;
+						div.style.cursor = 'pointer';
+						div.onclick = function() {
+							window.location.href = `/post?post_id=${post._id}`;
+						}
+						profile_viewed_container.appendChild(div);
+					}
+				}
+			} else {
+				console.error('Failed to fetch user data:', data.message);
+			}
+			let check_follow_data;
+			if (params.get('user_id')) check_follow_data = await fetch(`${server}/user/is-followed?user_id=${params.get('user_id') || "0"}`, {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				credentials: 'include',
+			}).then((response) => response.json());
+			else check_follow_data = {success: false, message: 'No user id'};
+			function swicthFollow() {
+				const followText = document.getElementById('follow-text');
+				followText.innerText = isFollowing ? 'Đã theo dõi' : 'Theo dõi';
+				if (isFollowing) {
+					followButton.classList.remove('follow');
+					followButton.classList.add('followed');
+				} else {
+					followButton.classList.remove('followed');
+					followButton.classList.add('follow');
+				}
+			}
+			if (check_follow_data === undefined) {
+				isFollowing = true;
+				swicthFollow();
+			} else if (check_follow_data.success) {
+				isFollowing = check_follow_data.is_followed;
+				swicthFollow();
+			} else {
+				console.error('Failed to check follow status:', check_follow_data.message);
+			}
+
+			function updateButtonDisplay() {
+				if (isLoggedIn && isOwner) {
+					actionButton.style.display = 'flex';
+					followButton.style.display = 'none';
+				} else {
+					actionButton.style.display = 'none';
+					followButton.style.display = 'flex';
+				}
+			}
+
+			function requireLogin() {
+				window.location.href = '/login';
+			}
+
+			followButton.addEventListener('click', () => {
+				console.log(isLoggedIn, isOwner);
+				if (!isLoggedIn) {
+					requireLogin();
+				} else {
+					fetch(`${server}/user/follow?user_id=${params.get('user_id')}`, {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					}).then((response) => response.json()).then((data) => {
+						if (data.success) {
+							isFollowing = !isFollowing;
+							document.getElementById('profile-followers').textContent = isFollowing ? parseInt(document.getElementById('profile-followers').textContent) + 1 : parseInt(document.getElementById('profile-followers').textContent) - 1;
+							swicthFollow();
+						} else {
+							console.error('Failed to follow/unfollow:', data.message);
+						}
+					});
+
+				}
+			});
+			updateButtonDisplay();
+		})
+	</script>
+	<script type="module" src="./scripts/component.js"></script>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			const script = document.createElement("script");
+			script.type = "module";
+			script.src = "./scripts/navigator.js";
+			document.body.appendChild(script);
+		});
+	</script>
+</body>
+
+</html>

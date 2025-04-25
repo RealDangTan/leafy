@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="component-styles.css">
+<div>
+    <div class = 'still-tags-container'></div>
+    <script type = "module">
+        import { still_tags_loader_with_link, still_tags_loader_no_link } from '../scripts/tags_loader.js';
+
+        const container = document.querySelector('.still-tags-container');
+
+        // Thêm 1 tag mới vào container, cú pháp : {text: 'Tên tag', link: 'Đường dẫn đến trang web'}
+
+        still_tags_loader_with_link(container, [
+            {
+                text: 'Syaro',
+                link: 'https://www.youtube.com/',
+            },
+            {
+                text: 'Fubuki-chan',
+                link: 'https://www.youtube.com/',
+            },
+        ])
+
+        // Hoặc nếu không cần link thì dùng hàm này
+        still_tags_loader_no_link(container, ['Kaguya', 'Miku', 'Gura', 'Aqua', 'Mori Calliope', 'Nene', 'Pekora', 'Kanata', 'Coco', 'Watame', 'Aki', 'Matsuri', 'Subaru', 'Choco', 'Roboco', 'Okayu', 'Korone', 'Marine', 'Luna', 'Sora', 'Aqua-chan', 'Miko-chan', 'Nene-chan', 'Pekora-chan']);
+    </script>
+</div>

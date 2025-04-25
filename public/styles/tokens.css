@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap');
+
+html{
+    font-size: 16px;
+    font-family: 'Roboto Serif';
+    color: var(--color-brand-contrast);
+}
+
+body {
+  background-color: var(--color-background-primary);
+  width: 100%;
+  height: 100%;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+button{
+  cursor: pointer;
+  font-family: 'Roboto Serif';
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Neutral Colors */
+  --color-true-white: #ffffff;
+
+  /* Background Colors */
+  --color-background-primary: #f8f8e7;
+  --color-background-secondary: #bad061;
+
+  /* Brand Colors */
+  --color-brand-primary: #87a706;
+  --color-brand-contrast: #204f0a;
+  --color-brand-low-contrast: #9db052;
+  --color-brand-opacity15: rgb(135, 167, 6, 0.1);
+  --color-brand-opacity25: rgb(135, 167, 6, 0.25);
+  --color-brand-opacity50: rgb(135, 167, 6, 0.5);
+  
+  /* Interaction Colors */
+  --color-hover: #aacc22;
+  --color-clicked: #bdd460;
+
+  /* Spacing Scale */
+  --spacing-1: 8px;
+  --spacing-2: 16px;
+  --spacing-3: 24px;
+  --spacing-4: 32px;
+  --spacing-5: 40px;
+  --spacing-6: 60px;
+  --spacing-7: 96px;
+}
+
+/* WebKit scrollbar styling */
+::-webkit-scrollbar {
+  width: 50px;
+  height: 50px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* no background */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #88ab2d; /* default (middle) */
+  border-radius: 999px;
+  border: 3px solid transparent; /* creates padding effect */
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a2b765; /* hover (left) */
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #264a1d; /* active/click (right) */
+}
+
+/* Remove scrollbar buttons (top/bottom arrows) */
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+}
+
+/* Firefox fallback */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #88ab2d transparent;
+}
+  
